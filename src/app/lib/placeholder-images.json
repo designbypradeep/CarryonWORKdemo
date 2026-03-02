@@ -1,0 +1,35 @@
+
+{
+  "placeholderImages": [
+    {
+      "id": "hero-image",
+      "description": "Professional modern office space with focused workers",
+      "imageUrl": "https://picsum.photos/seed/carryon1/1200/800",
+      "imageHint": "office teamwork"
+    },
+    {
+      "id": "trust-image",
+      "description": "Close-up of a secure handshake or digital escrow symbol",
+      "imageUrl": "https://picsum.photos/seed/carryon2/600/400",
+      "imageHint": "handshake trust"
+    },
+    {
+      "id": "worker-avatar",
+      "description": "Professional portrait of a freelancer",
+      "imageUrl": "https://picsum.photos/seed/worker1/150/150",
+      "imageHint": "person portrait"
+    },
+    {
+      "id": "task-preview",
+      "description": "Code on a screen or design mockup",
+      "imageUrl": "https://picsum.photos/seed/task1/400/300",
+      "imageHint": "technology design"
+    },
+    {
+      "id": "founder-image",
+      "description": "Professional portrait of the founder",
+      "imageUrl": "https://picsum.photos/seed/founder/800/800",
+      "imageHint": "founder portrait"
+    }
+  ]
+}
