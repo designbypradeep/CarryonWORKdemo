@@ -1,14 +1,53 @@
+
 import React from 'react';
 import Link from 'next/link';
 import { Logo } from '@/components/ui/logo';
 import { Button } from '@/components/ui/button';
-import { ShieldCheck, Lock, Layers, Zap, ArrowLeft, Terminal, Server, Cpu, Twitter, Github, Linkedin } from 'lucide-react';
+import { ShieldCheck, Lock, Layers, Zap, ArrowLeft, Terminal, Server, Cpu, Twitter, Github, Linkedin, CheckCircle2, AlertTriangle, Scale } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+
+const PROTOCOL_RULES = [
+  "CarryonWORK is a neutral platform and does not take the side of the hirer or the worker.",
+  "Task price and task scope are mutually decided by the hirer and the worker.",
+  "CarryonWORK does not fix or control task prices.",
+  "Before a task starts, scope, deliverables, timeline, and payment must be clearly agreed.",
+  "Any work outside the agreed scope will be treated as a new task.",
+  "The hirer must deposit the full task payment into escrow before work begins.",
+  "The worker receives payment only after the task is completed and approved.",
+  "Approved payments are released within the platform's fixed payout timeline.",
+  "Each task is classified by the platform as low, medium, or high risk.",
+  "Platform commission is 10% for low-risk, 15% for medium-risk, and 20% for high-risk tasks.",
+  "Risk category and commission cannot be changed after the task starts.",
+  "The worker is responsible only for the agreed scope of work.",
+  "The hirer must review work only against agreed deliverables.",
+  "Personal preferences or extra expectations are not quality issues.",
+  "Revisions are allowed only within scope and within reasonable limits.",
+  "Task timelines must be agreed before work starts.",
+  "In case of delay, the worker must inform the hirer in advance.",
+  "Genuine situations require reasonable flexibility from both sides.",
+  "Repeated unexplained delays may lead to platform action.",
+  "If a dispute is raised, payment and ratings are temporarily frozen.",
+  "Disputes are resolved using scope, platform chat, and submitted work.",
+  "Partial but usable work may qualify for partial payment.",
+  "One task allows only one rating.",
+  "Ratings can be given only after payment completion.",
+  "Ratings cannot be edited or deleted.",
+  "Abusive or false reviews may be removed by the platform.",
+  "Strikes are issued only for clear rule violations or repeated poor work.",
+  "The first strike is a warning. Three strikes may result in temporary profile suspension.",
+  "Hirers must provide clear task details and timely approvals.",
+  "Workers must select only skills they genuinely possess.",
+  "Copied, misleading, or low-effort work is not allowed.",
+  "Confidential information must not be misused by either party.",
+  "If rules are followed, the platform will provide support.",
+  "If rules are violated, action will be taken regardless of who is at fault."
+];
 
 export default function ProtocolPage() {
   return (
     <div className="min-h-screen bg-white text-black selection:bg-primary selection:text-white grainy-bg overflow-x-hidden">
       <header className="fixed top-0 w-full z-50 p-6 sm:p-10">
-        <div className="container mx-auto flex justify-between items-center bg-white/60 backdrop-blur-3xl border border-black/5 rounded-[2.5rem] h-20 px-8 shadow-sm">
+        <div className="container mx-auto px-4 lg:px-12 flex justify-between items-center bg-white/60 backdrop-blur-3xl border border-black/5 rounded-2xl h-16 sm:h-20 lg:h-32 px-8 shadow-sm">
           <Link href="/">
             <Logo className="w-48" />
           </Link>
@@ -27,7 +66,7 @@ export default function ProtocolPage() {
               <p className="text-[11px] font-black uppercase tracking-[0.5em] text-primary">Technical Specification</p>
               <h1 className="text-6xl lg:text-9xl font-black italic leading-[0.8] tracking-tighter uppercase">The Vault <br/>Architecture.</h1>
               <p className="text-xl lg:text-3xl font-bold text-black/50 leading-tight italic max-w-4xl pt-8">
-                Every project is a self-contained node on the Carryon execution chain. Zero settlement risk, infinite transparency.
+                Meritocracy enforced by code. Every project is a self-contained node on the Carryon execution chain.
               </p>
             </div>
 
@@ -35,7 +74,7 @@ export default function ProtocolPage() {
                {[
                  { icon: <Lock />, title: "Staking", desc: "Funds are moved from the Hirer's node to 'Vault Alpha' (Simulated Escrow) before work assignment." },
                  { icon: <ShieldCheck />, title: "Verification", desc: "Artifacts are audited via our Skill Mesh, ensuring quality compliance at every layer." },
-                 { icon: <Zap />, title: "Settlement", desc: "Approval triggers instantaneous release of funds. No manual bank delays or legacy settlement windows." }
+                 { icon: <Zap />, title: "Settlement", desc: "Approval triggers instantaneous release of funds. No legacy bank delays or settlement windows." }
                ].map((item, i) => (
                  <div key={i} className="p-10 rounded-[3rem] bg-accent/30 border border-black/5 flex flex-col gap-6">
                    <div className="w-14 h-14 bg-black text-white rounded-2xl flex items-center justify-center shadow-xl">{item.icon}</div>
@@ -43,6 +82,23 @@ export default function ProtocolPage() {
                    <p className="text-sm font-bold opacity-60 italic leading-relaxed">"{item.desc}"</p>
                  </div>
                ))}
+            </div>
+          </section>
+
+          {/* Rules of Engagement */}
+          <section className="space-y-16 animate-reveal">
+            <div className="text-center space-y-4">
+              <Badge variant="outline" className="text-primary border-primary/20 bg-primary/5 px-6 py-2 rounded-full font-black text-[10px] uppercase tracking-widest italic">GOVERNANCE</Badge>
+              <h2 className="text-4xl lg:text-7xl font-black tracking-tighter italic uppercase leading-none">Rules of the <br/><span className="text-primary">Protocol.</span></h2>
+            </div>
+            
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {PROTOCOL_RULES.map((rule, i) => (
+                <div key={i} className="p-8 rounded-[2rem] bg-white border border-black/5 hover:border-primary/20 transition-all flex gap-4 items-start group">
+                  <div className="w-8 h-8 rounded-lg bg-accent/50 flex items-center justify-center shrink-0 font-black text-[10px] text-primary group-hover:bg-primary group-hover:text-white transition-colors">{i + 1}</div>
+                  <p className="text-sm font-bold italic leading-relaxed opacity-60 group-hover:opacity-100 transition-opacity">{rule}</p>
+                </div>
+              ))}
             </div>
           </section>
 
@@ -54,7 +110,7 @@ export default function ProtocolPage() {
                    <div className="space-y-8">
                       {[
                         { icon: <Terminal />, label: "Git-Synced Commits", sub: "Direct integration with major version control hubs." },
-                        { icon: <Server />, label: "Isolated Audit Nodes", sub: "Each submission is reviewed in a neutral protocol environment." },
+                        { icon: <Server />, label: "Isolated Audit Nodes", sub: "Each submission is reviewed in a neutral environment." },
                         { icon: <Cpu />, label: "Reputation Injection", sub: "Successful artifacts increase your node's execution weight." }
                       ].map((item, i) => (
                         <div key={i} className="flex gap-6 items-start">
@@ -105,32 +161,26 @@ export default function ProtocolPage() {
             </div>
 
             <div className="space-y-8 lg:col-span-2">
-              <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-primary italic">The Network</h4>
+              <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-primary italic">Company</h4>
               <nav className="flex flex-col gap-4 text-sm font-black text-white/40 uppercase tracking-widest italic">
-                <Link href="/#who-is-for" className="hover:text-white transition-colors">Worker Nodes</Link>
-                <Link href="/#who-is-for" className="hover:text-white transition-colors">Hirer Nodes</Link>
-                <Link href="/#who-is-for" className="hover:text-white transition-colors">Elite Mesh</Link>
-                <Link href="/#who-is-for" className="hover:text-white transition-colors">Artifact Hub</Link>
+                <Link href="/about" className="hover:text-white transition-colors">About Us</Link>
+                <Link href="/careers" className="hover:text-white transition-colors">Careers</Link>
               </nav>
             </div>
 
             <div className="space-y-8 lg:col-span-3">
-              <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-primary italic">The Protocol</h4>
+              <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-primary italic">Resources</h4>
               <nav className="flex flex-col gap-4 text-sm font-black text-white/40 uppercase tracking-widest italic">
-                <Link href="/manifesto" className="hover:text-white transition-colors">The Manifesto</Link>
-                <Link href="/protocol" className="hover:text-white transition-colors">The Vault</Link>
-                <Link href="/protocol" className="hover:text-white transition-colors">Verification</Link>
-                <Link href="/protocol" className="hover:text-white transition-colors">Reputation</Link>
+                <Link href="/blogs" className="hover:text-white transition-colors">Blogs</Link>
+                <Link href="/contact" className="hover:text-white transition-colors">Contact Us</Link>
               </nav>
             </div>
 
             <div className="space-y-8 lg:col-span-3">
-              <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-primary italic">Legal Node</h4>
+              <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-primary italic">Legal</h4>
               <nav className="flex flex-col gap-4 text-sm font-black text-white/40 uppercase tracking-widest italic">
-                <Link href="#" className="hover:text-white transition-colors">Privacy Chain</Link>
-                <Link href="#" className="hover:text-white transition-colors">Terms of Node</Link>
-                <Link href="#" className="hover:text-white transition-colors">SLA Contract</Link>
-                <Link href="#" className="hover:text-white transition-colors">Compliance</Link>
+                <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
+                <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
               </nav>
             </div>
           </div>

@@ -1,7 +1,7 @@
 
 "use client"
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -12,47 +12,85 @@ import {
   ShieldCheck,
   Lock,
   Zap,
-  Rocket,
   CheckCircle2,
-  Building2,
   SquareTerminal,
   Layers,
   Flame,
-  MousePointer2,
   Twitter,
   Github,
   Linkedin,
   AlertTriangle,
   Terminal,
-  Server,
-  Cpu,
   GraduationCap,
   Briefcase,
-  Monitor,
   RefreshCw,
   Users,
-  Lightbulb,
-  IndianRupee,
   Youtube,
   Instagram,
   Music,
   Mail,
-  MessageCircle,
   Quote,
   Play,
   FileCode,
-  Palette,
   Star,
-  Target,
-  Wand2
+  ChevronRight,
+  BookOpen,
+  HelpCircle,
+  TrendingUp,
+  CreditCard
 } from 'lucide-react';
+import { 
+  Accordion, 
+  AccordionContent, 
+  AccordionItem, 
+  AccordionTrigger 
+} from '@/components/ui/accordion';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
-export default function LandingPage() {
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
-  const [isScrolled, setIsScrolled] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
+const FAQ_DATA = [
+  {
+    question: "What exactly is CarryonWORK?",
+    answer: "CarryonWORK is a skill-first execution protocol. We bypass the resume and degree filter, allowing you to prove your worth through real, task-based outcomes. It's not a job portal; it's an architecture of opportunity.",
+    icon: <Terminal className="w-5 h-5" />
+  },
+  {
+    question: "How does the 'Vault' (Escrow) protect me?",
+    answer: "Total settlement risk is eliminated. Before any worker starts a task, the Hirer must stake the full budget into 'Vault Alpha'. Funds are released automatically upon verified task approval.",
+    icon: <Lock className="w-5 h-5" />
+  },
+  {
+    question: "Can I join as a fresher without experience?",
+    answer: "Absolutely. We have a specific 'Fresher Pathway'. You start with Low-Risk tasks under supervision. After successfully delivering 8-10 artifacts, your node is verified for independent execution.",
+    icon: <TrendingUp className="w-5 h-5" />
+  },
+  {
+    question: "Are there any joining or hidden fees?",
+    answer: "Zero. There are no registration fees for Workers. We only take a platform commission (10-20% based on task risk) after a successful outcome has been delivered and paid.",
+    icon: <CreditCard className="w-5 h-5" />
+  },
+  {
+    question: "What happens if there is a dispute?",
+    answer: "Our AI-Oracle and Admin protocols arbitrate disputes based on the initial agreed scope and submitted artifacts. We remain a neutral node to ensure fairness for both parties.",
+    icon: <ShieldCheck className="w-5 h-5" />
+  },
+  {
+    question: "Is this a freelancing marketplace like Upwork?",
+    answer: "No. Unlike generic marketplaces, we have no bidding wars and no price-dropping. Nodes are matched based on reputation mesh and skill verification, not who is the cheapest.",
+    icon: <Layers className="w-5 h-5" />
+  }
+];
 
+const TRUSTED_LOGOS = [
+  { name: 'Amazon', color: 'hover:text-[#FF9900]' },
+  { name: 'Vedantu', color: 'hover:text-[#F37021]' },
+  { name: 'WELSPUN', color: 'hover:text-[#0054A6]' },
+  { name: 'Heritage', color: 'hover:text-[#EE1C25]' },
+  { name: 'Habuild', color: 'hover:text-[#00B4D8]' },
+];
+
+export default function LandingPage() {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [showGetStartedOptions, setShowGetStartedOptions] = useState(false);
   const founderImg = PlaceHolderImages.find(img => img.id === 'founder-image');
 
   useEffect(() => {
@@ -61,19 +99,16 @@ export default function LandingPage() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!containerRef.current) return;
-    const { left, top, width, height } = containerRef.current.getBoundingClientRect();
-    const x = (e.clientX - left) / width;
-    const y = (e.clientY - top) / height;
-    const tiltX = (y - 0.5) * 8;
-    const tiltY = (x - 0.5) * -8;
-    setTilt({ x: tiltX, y: tiltY });
+  const scrollToDemo = () => {
+    document.getElementById('protocol-demo')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleGetStarted = () => {
+    setShowGetStartedOptions(true);
   };
 
   return (
     <div className="flex flex-col min-h-screen bg-white selection:bg-primary selection:text-white grainy-bg overflow-x-hidden">
-      {/* 2026 Custom Glass Header */}
       <header className={`fixed top-0 w-full z-50 transition-all duration-1000 px-4 sm:px-8 pt-4 sm:pt-6 ${isScrolled ? 'py-2' : 'py-4 lg:py-10'}`}>
         <div className={`container mx-auto px-4 lg:px-12 flex justify-between items-center bg-white/60 backdrop-blur-3xl border border-white/20 rounded-2xl lg:rounded-[2.5rem] h-16 sm:h-20 lg:h-32 transition-all duration-1000 ${isScrolled ? 'shadow-2xl shadow-black/10 h-14 sm:h-16 lg:h-24' : 'shadow-none'}`}>
           <Link href="/" className="group shrink-0">
@@ -83,29 +118,27 @@ export default function LandingPage() {
             <Link href="/manifesto" className="text-[10px] font-black uppercase tracking-[0.4em] text-foreground/60 hover:text-primary transition-all duration-700">Manifesto</Link>
             <Link href="/protocol" className="text-[10px] font-black uppercase tracking-[0.4em] text-foreground/60 hover:text-primary transition-all duration-700">Protocol</Link>
             <Link href="#who-is-for" className="text-[10px] font-black uppercase tracking-[0.4em] text-foreground/60 hover:text-primary transition-all duration-700">The Network</Link>
-            <Link href="/auth/login">
-              <Button variant="outline" className="rounded-full font-black text-[10px] uppercase tracking-widest px-8 h-12 lg:h-16 border-foreground/10 hover:border-primary transition-all duration-500 shadow-sm bg-white/40">
-                Sign In
-              </Button>
-            </Link>
-            <Link href="/auth/signup">
-              <Button className="rounded-[2.5rem] px-8 h-14 xl:h-20 font-black shadow-[0_30px_60px_-15px_rgba(255,100,0,0.4)] btn-premium group flex items-center gap-4 text-[11px] xl:text-sm italic uppercase">
+            <Button variant="outline" asChild className="rounded-full font-black text-[10px] uppercase tracking-widest px-8 h-12 lg:h-16 border-foreground/10 hover:border-primary transition-all duration-500 shadow-sm bg-white/40">
+              <Link href="/auth/login">Sign In</Link>
+            </Button>
+            <Button asChild className="rounded-[2.5rem] px-8 h-14 xl:h-20 font-black shadow-[0_30px_60px_-15px_rgba(255,100,0,0.4)] btn-premium group flex items-center gap-4 text-[11px] xl:text-sm italic uppercase">
+              <Link href="/auth/signup">
                 Apply Now <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-700" />
-              </Button>
-            </Link>
+              </Link>
+            </Button>
           </nav>
           <div className="flex items-center gap-2 lg:hidden">
-            <Link href="/auth/login">
-              <Button size="sm" variant="ghost" className="rounded-full font-black text-[10px] uppercase tracking-widest px-4 h-10">Login</Button>
-            </Link>
-            <Link href="/auth/signup">
-              <Button size="sm" className="rounded-full font-black text-[10px] uppercase tracking-widest px-6 h-10 btn-premium shadow-lg">Join</Button>
-            </Link>
+            <Button size="sm" variant="ghost" asChild className="rounded-full font-black text-[10px] uppercase tracking-widest px-4 h-10">
+              <Link href="/auth/login">Login</Link>
+            </Button>
+            <Button size="sm" asChild className="rounded-full font-black text-[10px] uppercase tracking-widest px-6 h-10 btn-premium shadow-lg">
+              <Link href="/auth/signup">Join</Link>
+            </Button>
           </div>
         </div>
       </header>
 
-      {/* 1. Cinematic Hero - Centered Version */}
+      {/* 1. Cinematic Hero */}
       <section className="relative pt-32 pb-16 sm:pt-48 sm:pb-24 lg:pt-64 lg:pb-32 xl:pt-80 xl:pb-48 overflow-hidden px-4 sm:px-8">
         <div className="absolute inset-0 -z-10 overflow-hidden">
           <div className="absolute top-[-15%] left-[5%] w-[300px] sm:w-[600px] lg:w-[1200px] h-[300px] sm:h-[600px] lg:h-[1200px] bg-primary/20 rounded-full blur-[80px] lg:blur-[220px] animate-pulse-soft" />
@@ -115,7 +148,7 @@ export default function LandingPage() {
         <div className="container mx-auto flex flex-col items-center relative z-10 text-center">
           <div className="flex flex-col gap-6 lg:gap-10 animate-reveal items-center max-w-5xl">
             <div className="inline-flex items-center gap-4 bg-primary text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-black text-[9px] sm:text-[10px] lg:text-xs uppercase tracking-[0.4em] lg:tracking-[0.6em] shadow-3xl">
-              <Flame className="w-4 h-4 animate-pulse shrink-0" /> <span>Not a platform. Not a marketplace. Only Execution.</span>
+              <Flame className="w-4 h-4 animate-pulse shrink-0" /> <span>Real Tasks. Real Proof. Real Payment.</span>
             </div>
             
             <h1 className="text-4xl sm:text-6xl lg:text-8xl xl:text-[9.5rem] font-black leading-[0.95] sm:leading-[0.9] lg:leading-[0.8] tracking-tighter text-gradient italic uppercase">
@@ -125,149 +158,86 @@ export default function LandingPage() {
             </h1>
 
             <div className="text-base sm:text-xl lg:text-2xl xl:text-3xl text-foreground/80 max-w-3xl leading-tight font-bold italic">
-              <p>Traditional hiring is a theater of compliance.</p>
+              <p>Built for those who can&apos;t afford to quit recklessly.</p>
               <p className="text-foreground mt-1 lg:mt-2">CarryonWORK is an <span className="text-primary">Architecture of Outcomes.</span></p>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 lg:gap-8 mt-6 lg:mt-10 w-full sm:w-auto">
-              <Link href="/auth/signup?role=worker" className="w-full sm:w-auto">
-                <Button size="lg" className="rounded-[2rem] lg:rounded-[4rem] w-full px-8 lg:px-14 h-16 lg:h-24 text-lg lg:text-2xl font-black shadow-[0_40px_80px_-20px_rgba(255,100,0,0.6)] gap-4 group btn-premium italic">
-                  I am an Outcome <ArrowRight className="w-5 h-5 lg:w-8 lg:h-8 group-hover:translate-x-4 transition-transform duration-1000" />
+            {!showGetStartedOptions ? (
+              <div className="mt-8 lg:mt-12 flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 w-full max-w-2xl">
+                <Button 
+                  size="lg" 
+                  className="rounded-[2rem] lg:rounded-[3rem] w-full sm:w-1/2 px-10 h-16 sm:h-20 lg:h-24 text-lg lg:text-2xl font-black shadow-[0_20px_40px_-10px_rgba(255,100,0,0.4)] btn-premium italic"
+                  onClick={handleGetStarted}
+                >
+                  Get Started <ChevronRight className="w-5 h-5 ml-2" />
                 </Button>
-              </Link>
-              <Link href="/auth/signup?role=hirer" className="w-full sm:w-auto">
-                <Button size="lg" variant="outline" className="rounded-[2rem] lg:rounded-[4rem] w-full px-8 lg:px-14 h-16 lg:h-24 text-lg lg:text-2xl font-black border-2 sm:border-[3px] border-foreground hover:bg-foreground hover:text-white transition-all duration-1000 shadow-xl italic">
-                  I need Artifacts
+                <Button 
+                  variant="outline"
+                  size="lg" 
+                  className="rounded-[2rem] lg:rounded-[3rem] w-full sm:w-1/2 px-10 h-16 sm:h-20 lg:h-24 text-lg lg:text-2xl font-black border-2 border-foreground/10 hover:border-primary transition-all duration-500 italic"
+                  onClick={scrollToDemo}
+                >
+                  Demo
                 </Button>
-              </Link>
-            </div>
+              </div>
+            ) : (
+              <div className="mt-8 lg:mt-16 w-full max-w-5xl animate-reveal flex flex-col items-center gap-6">
+                <p className="text-sm font-black text-muted-foreground uppercase tracking-[0.4em] italic mb-4">What do you want to do? (you can edit this later)</p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+                  <Link href="/auth/signup?role=worker" className="group">
+                    <div className="h-40 md:h-64 rounded-3xl bg-primary flex items-center justify-center p-8 text-white shadow-2xl hover:scale-[1.02] transition-all duration-500">
+                      <div className="space-y-2 text-center">
+                        <p className="text-xs font-black uppercase tracking-widest opacity-80">I want to</p>
+                        <h3 className="text-2xl md:text-4xl font-black italic uppercase tracking-tighter leading-none">Work as a <br/>Freelancer</h3>
+                      </div>
+                    </div>
+                  </Link>
+                  <Link href="/auth/signup?role=hirer" className="group">
+                    <div className="h-40 md:h-64 rounded-3xl bg-white border-2 border-primary flex items-center justify-center p-8 text-primary shadow-2xl hover:scale-[1.02] transition-all duration-500">
+                      <div className="space-y-2 text-center">
+                        <p className="text-xs font-black uppercase tracking-widest opacity-80">I want to</p>
+                        <h3 className="text-2xl md:text-4xl font-black italic uppercase tracking-tighter leading-none">Hire a <br/>Freelancer</h3>
+                      </div>
+                    </div>
+                  </Link>
+                </div>
+                
+                <Link href="/auth/signup?role=worker&intent=learn" className="w-full group">
+                  <div className="h-32 md:h-40 rounded-3xl bg-primary flex items-center justify-center p-8 text-white shadow-2xl hover:scale-[1.01] transition-all duration-500 relative overflow-hidden">
+                    <div className="absolute top-0 right-0 p-4 opacity-10"><BookOpen className="w-20 h-20" /></div>
+                    <div className="space-y-2 text-center relative z-10">
+                      <p className="text-[10px] font-black uppercase tracking-widest opacity-70">The Learning Pathway</p>
+                      <h3 className="text-xl md:text-3xl font-black italic uppercase tracking-tighter leading-none">I Want to Learn First and Then Earn</h3>
+                    </div>
+                  </div>
+                </Link>
 
-            <div className="mt-8 lg:mt-12 animate-reveal delay-1">
-              <Button 
-                variant="outline" 
-                className="h-14 lg:h-16 px-10 rounded-full bg-white/40 backdrop-blur-md border-primary/20 text-primary hover:bg-primary/5 font-black text-[11px] lg:text-xs uppercase tracking-[0.4em] italic gap-3 shadow-lg group"
-                onClick={() => {
-                  const demoSection = document.getElementById('execution-gateway');
-                  demoSection?.scrollIntoView({ behavior: 'smooth' });
-                }}
-              >
-                <Play className="w-4 h-4 fill-primary animate-pulse" /> Book Protocol Demo
-              </Button>
-            </div>
+                <Button 
+                  variant="ghost" 
+                  className="mt-4 text-[10px] font-black uppercase tracking-[0.3em] text-muted-foreground hover:text-primary"
+                  onClick={() => setShowGetStartedOptions(false)}
+                >
+                  Back to selection
+                </Button>
+              </div>
+            )}
           </div>
         </div>
       </section>
 
-      {/* 2. Execution Gateway - The Split Portal */}
-      <section id="execution-gateway" className="min-h-screen bg-white flex flex-col lg:flex-row relative z-10 border-y border-black/5 overflow-hidden">
-        {/* Left Side: Worker Node (Execution Artifacts) */}
-        <div className="flex-1 flex flex-col justify-center p-8 sm:p-12 lg:p-24 bg-white relative overflow-hidden group">
-          <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
-          <div className="relative z-10 max-w-xl mx-auto lg:mx-0">
-             <h2 className="text-5xl sm:text-7xl xl:text-8xl font-black tracking-tighter italic uppercase text-primary leading-[0.85] mb-12">
-               Deliver <br/>The <span className="text-black">Outcome</span> <br/>Protocol.
-             </h2>
-             <p className="text-lg sm:text-xl font-bold text-foreground/60 italic leading-tight max-w-md">
-               Browse the artifact network. Execute at Layer 1. <br/>
-               <span className="text-primary">Proof of Work, verified.</span>
-             </p>
-          </div>
-
-          {/* Floating Artifact Cluster */}
-          <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[300px] h-[500px] hidden xl:block pointer-events-none">
-             <div className="relative w-full h-full">
-                {/* Artifact Card 1: Verified Code */}
-                <div className="absolute top-10 right-10 w-64 h-80 rounded-[2.5rem] bg-[#0A0A0B] shadow-2xl p-8 border border-white/10 animate-float">
-                  <FileCode className="w-10 h-10 text-primary mb-4" />
-                  <div className="space-y-3">
-                    <div className="h-2 w-3/4 bg-white/20 rounded-full" />
-                    <div className="h-2 w-full bg-white/10 rounded-full" />
-                    <div className="h-2 w-1/2 bg-white/10 rounded-full" />
-                  </div>
-                  <div className="mt-32 flex justify-between items-center">
-                    <span className="text-[10px] font-black uppercase text-primary tracking-widest">Code Sync</span>
-                    <Badge variant="outline" className="text-white border-white/20 text-[8px]">v3.4</Badge>
-                  </div>
-                </div>
-                {/* Artifact Card 2: Reputation Mesh */}
-                <div className="absolute bottom-10 left-[-40px] w-64 h-80 rounded-[2.5rem] bg-white shadow-2xl p-8 border border-black/5 animate-float delay-1">
-                  <Star className="w-10 h-10 text-primary mb-4" />
-                  <div className="space-y-3">
-                    <div className="h-2 w-full bg-primary/10 rounded-full" />
-                    <div className="h-2 w-3/4 bg-primary/5 rounded-full" />
-                  </div>
-                  <div className="mt-32 flex justify-between items-center">
-                    <span className="text-[10px] font-black uppercase text-primary tracking-widest">Trust Mesh</span>
-                    <div className="w-8 h-8 rounded-full bg-primary/20" />
-                  </div>
-                </div>
-             </div>
-          </div>
-        </div>
-
-        {/* Right Side: Hirer Node (Mission Deployment Hub) */}
-        <div className="flex-1 flex flex-col justify-center p-8 sm:p-12 lg:p-24 bg-accent/10 border-l border-black/5 relative overflow-hidden">
-           <div className="max-w-md w-full mx-auto space-y-12 animate-reveal">
-              <div className="text-center lg:text-left space-y-4">
-                 <h3 className="text-2xl font-black italic uppercase tracking-tighter">Deploy Mission Critical Tasks</h3>
-                 <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest">Secure High-Fidelity Execution</p>
-              </div>
-
-              <div className="bg-white p-8 sm:p-12 rounded-[3rem] shadow-2xl border border-black/5 space-y-8">
-                 <div className="space-y-6">
-                    <div className="space-y-3">
-                      <label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground ml-2">Define Mission Scope</label>
-                      <div className="w-full h-16 sm:h-20 px-8 rounded-2xl border border-border bg-[#F8F9FA] flex items-center text-lg font-bold text-foreground/40 italic">
-                        e.g. UPI 2.0 Integration...
-                      </div>
-                    </div>
-                    <div className="space-y-3">
-                      <label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground ml-2">Stake Vault Budget</label>
-                      <div className="w-full h-16 sm:h-20 px-8 rounded-2xl border border-border bg-[#F8F9FA] flex items-center justify-between text-lg font-bold">
-                        <span>₹75,000</span>
-                        <IndianRupee className="w-5 h-5 text-primary" />
-                      </div>
-                    </div>
-                 </div>
-
-                 <Link href="/auth/signup?role=hirer" className="block">
-                  <Button className="w-full h-16 sm:h-20 rounded-2xl bg-primary hover:bg-primary/90 text-xl font-black italic shadow-lg shadow-primary/20 gap-4">
-                    Initialize Protocol <Zap className="w-6 h-6 fill-white" />
-                  </Button>
-                 </Link>
-              </div>
-           </div>
-        </div>
-      </section>
-
-      {/* 3. Reality Check (Problem Statement) */}
-      <section className="py-16 lg:py-48 bg-white border-y border-black/5 px-4 sm:px-8">
-        <div className="container mx-auto">
-          <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-            <div className="space-y-8 lg:space-y-12 text-center lg:text-left">
-              <div className="space-y-4 lg:space-y-6">
-                <Badge variant="outline" className="text-primary border-primary/20 bg-primary/5 px-6 py-2 rounded-full font-black text-[9px] sm:text-[10px] uppercase tracking-widest">The India Context</Badge>
-                <h2 className="text-4xl lg:text-7xl font-black tracking-tighter italic uppercase leading-[0.9] lg:leading-[0.85]">Why the current <br className="hidden sm:block" />system is <span className="text-primary">broken.</span></h2>
-              </div>
-              <div className="space-y-6 lg:space-y-8 text-base sm:text-xl font-bold text-foreground/60 italic leading-relaxed">
-                <p>90% of Indian freelancers spend more time bidding than building. Freshers are stuck in the "Experience Loop," while MSMEs lose ₹40,000+ per month on failed hires.</p>
-                <p className="text-foreground">CarryonWORK is an <span className="text-primary">Artifact Mesh</span> to match outcomes, not resumes.</p>
-              </div>
-              <Link href="/manifesto" className="inline-block">
-                <Button variant="outline" className="h-14 sm:h-16 px-8 sm:px-10 rounded-xl sm:rounded-2xl font-black text-[10px] sm:text-xs uppercase tracking-widest border-2 border-black hover:bg-black hover:text-white transition-all italic">Read The Manifesto</Button>
-              </Link>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
-              {[
-                { title: "No Bidding", icon: <AlertTriangle />, desc: "Nodes are matched based on reputation mesh, not lowest price." },
-                { title: "No Resumes", icon: <SquareTerminal />, desc: "Your artifact history is your only verified identity." },
-                { title: "Zero Risk", icon: <Lock />, desc: "The budget is staked in the Vault before the node syncs." },
-                { title: "Instant Pay", icon: <Zap />, desc: "Artifact approval triggers automated protocol settlement." }
-              ].map((item, i) => (
-                <div key={i} className="p-8 sm:p-10 rounded-2xl sm:rounded-[2.5rem] bg-accent/20 border border-black/5 hover:border-primary/20 transition-all duration-700 flex flex-col gap-4 sm:gap-6">
-                  <div className="text-primary">{React.cloneElement(item.icon as React.ReactElement, { className: 'w-6 h-6 sm:w-8 sm:h-8' })}</div>
-                  <h4 className="text-lg sm:text-xl font-black italic uppercase leading-none">{item.title}</h4>
-                  <p className="text-xs sm:text-sm font-bold opacity-40 italic leading-relaxed">{item.desc}</p>
+      {/* 2. Trusted By Section */}
+      <section className="py-12 sm:py-20 lg:py-24 bg-white/40 border-y border-black/5">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col items-center gap-12 lg:gap-16">
+            <h2 className="text-2xl sm:text-3xl lg:text-5xl font-black tracking-tighter text-center max-w-4xl italic leading-[1.1]">
+              Loved and trusted by <br className="hidden sm:block"/>
+              <span className="text-primary">16,000+ businesses</span>, across the globe
+            </h2>
+            
+            <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-10 lg:gap-x-24 opacity-60">
+              {TRUSTED_LOGOS.map((logo) => (
+                <div key={logo.name} className={`text-xl sm:text-2xl lg:text-3xl font-black italic uppercase tracking-tighter transition-all duration-500 cursor-default grayscale hover:grayscale-0 ${logo.color}`}>
+                  {logo.name}
                 </div>
               ))}
             </div>
@@ -275,7 +245,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* 4. Protocol Demo Section */}
+      {/* 3. Protocol Demo Section */}
       <section id="protocol-demo" className="py-24 lg:py-48 bg-[#0A0A0B] px-4 sm:px-8 relative overflow-hidden">
         <div className="container mx-auto">
           <div className="max-w-6xl mx-auto space-y-16">
@@ -294,7 +264,6 @@ export default function LandingPage() {
                   data-ai-hint="technology code"
                 />
                 
-                {/* Cinematic Play Button Overlay */}
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="w-24 h-24 lg:w-40 lg:h-40 rounded-full bg-primary/10 border border-primary/20 backdrop-blur-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-500 cursor-pointer shadow-[0_0_80px_rgba(255,100,0,0.2)]">
                     <div className="w-16 h-16 lg:w-24 lg:h-24 rounded-full bg-primary text-white flex items-center justify-center shadow-2xl animate-pulse">
@@ -303,7 +272,6 @@ export default function LandingPage() {
                   </div>
                 </div>
 
-                {/* Bottom Overlay Info */}
                 <div className="absolute bottom-12 left-12 right-12 flex flex-col sm:flex-row justify-between items-end gap-6 relative z-10">
                    <div className="space-y-2">
                      <p className="text-[10px] font-black uppercase tracking-[0.5em] text-primary">Protocol Version 3.4.2</p>
@@ -320,62 +288,154 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* 5. Why CarryonWORK? (Roadmap/Features) */}
+      {/* 4. Execution Gateway */}
+      <section id="execution-gateway" className="min-h-screen bg-white flex flex-col lg:flex-row relative z-10 border-y border-black/5 overflow-hidden">
+        <div className="flex-1 flex flex-col justify-center p-8 sm:p-12 lg:p-24 bg-white relative overflow-hidden group">
+          <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+          <div className="relative z-10 max-w-xl mx-auto lg:mx-0">
+             <h2 className="text-5xl sm:text-7xl xl:text-[90px] font-black tracking-tighter italic uppercase leading-[0.85] mb-8">
+               <span className="text-primary">DO REAL</span> <br/>
+               <span className="text-primary">TASKS.</span> <br/>
+               <span className="text-black">GET PAID</span> <br/>
+               <span className="text-primary">FAST.</span>
+             </h2>
+             <div className="space-y-4">
+               <p className="text-lg sm:text-xl font-bold text-foreground/80 italic leading-tight max-w-md">
+                 Pick a task, finish it, and get paid. <br/>
+                 <span className="text-primary">Your work is your resume.</span>
+               </p>
+               <p className="text-sm font-bold text-muted-foreground/60 italic uppercase tracking-widest">
+                 No interviews. No bidding wars. No degree bias.
+               </p>
+             </div>
+          </div>
+
+          <div className="absolute right-[-10%] top-1/2 -translate-y-1/2 w-[400px] h-[500px] hidden xl:block pointer-events-none">
+             <div className="relative w-full h-full">
+                <div className="absolute top-10 right-20 w-64 h-80 rounded-[2.5rem] bg-[#0A0A0B] shadow-2xl p-8 border border-white/10 animate-float">
+                  <FileCode className="w-10 h-10 text-primary mb-4" />
+                  <div className="space-y-3">
+                    <div className="h-2 w-3/4 bg-white/20 rounded-full" />
+                    <div className="h-2 w-full bg-white/10 rounded-full" />
+                    <div className="h-2 w-1/2 bg-white/10 rounded-full" />
+                  </div>
+                  <div className="mt-32 flex justify-between items-center">
+                    <span className="text-[10px] font-black uppercase text-primary tracking-widest">Verified Work</span>
+                    <Badge variant="outline" className="text-white border-white/20 text-[8px]">v3.4</Badge>
+                  </div>
+                </div>
+                <div className="absolute bottom-10 left-0 w-72 h-80 rounded-[2.5rem] bg-white shadow-2xl p-10 border border-black/5 animate-float delay-1000">
+                  <Star className="w-10 h-10 text-primary mb-4" />
+                  <div className="space-y-4">
+                    <div className="h-2.5 w-full bg-primary/10 rounded-full" />
+                    <div className="h-2.5 w-3/4 bg-primary/5 rounded-full" />
+                  </div>
+                  <div className="mt-28 flex flex-col items-center">
+                    <span className="text-[10px] font-black uppercase text-primary tracking-[0.2em] mb-1">REPUTATION</span>
+                    <div className="w-8 h-8 rounded-full bg-primary/10" />
+                  </div>
+                </div>
+             </div>
+          </div>
+        </div>
+
+        <div className="flex-1 flex flex-col justify-center p-8 sm:p-12 lg:p-24 bg-accent/5 border-l border-black/5 relative overflow-hidden">
+           <div className="max-w-md w-full mx-auto space-y-12">
+              <div className="text-center space-y-4">
+                 <h3 className="text-3xl sm:text-4xl font-black italic uppercase tracking-tighter text-black">GET YOUR WORK DONE INSTANTLY.</h3>
+                 <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-[0.3em]">Safe, fast, and high-quality results.</p>
+              </div>
+
+              <div className="bg-white p-10 sm:p-14 rounded-[3.5rem] shadow-[0_40px_100px_rgba(0,0,0,0.06)] border border-black/5 space-y-10">
+                 <div className="space-y-8">
+                    <div className="space-y-3">
+                      <label className="text-[10px] font-black uppercase tracking-[0.3em] text-muted-foreground ml-2 italic">WHAT NEEDS TO BE DONE?</label>
+                      <div className="w-full h-20 px-8 rounded-2xl border border-border bg-[#F8F9FA] flex items-center text-lg font-bold text-foreground/20 italic">
+                        e.g. Design a landing page...
+                      </div>
+                    </div>
+                    <div className="space-y-3">
+                      <label className="text-[10px] font-black uppercase tracking-[0.3em] text-muted-foreground ml-2 italic">SET THE BUDGET (INR)</label>
+                      <div className="w-full h-20 px-8 rounded-2xl border border-border bg-[#F8F9FA] flex items-center justify-between text-xl font-bold">
+                        <span className="text-black">₹75,000</span>
+                        <span className="text-primary font-black italic text-2xl">₹</span>
+                      </div>
+                    </div>
+                 </div>
+
+                 <Button asChild className="w-full h-20 rounded-2xl bg-primary hover:bg-primary/90 text-2xl font-black italic shadow-lg shadow-primary/20 flex items-center justify-center gap-4">
+                  <Link href="/auth/signup?role=hirer">
+                    Find a Worker <Zap className="w-6 h-6 fill-white" />
+                  </Link>
+                 </Button>
+              </div>
+           </div>
+        </div>
+      </section>
+
+      {/* 5. Reality Check */}
+      <section className="py-16 lg:py-48 bg-white border-y border-black/5 px-4 sm:px-8">
+        <div className="container mx-auto">
+          <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+            <div className="space-y-8 lg:space-y-12 text-center lg:text-left">
+              <div className="space-y-4 lg:space-y-6">
+                <Badge variant="outline" className="text-primary border-primary/20 bg-primary/5 px-6 py-2 rounded-full font-black text-[9px] sm:text-[10px] uppercase tracking-widest">The India Crisis</Badge>
+                <h2 className="text-4xl lg:text-7xl font-black tracking-tighter italic uppercase leading-[0.9] lg:leading-[0.85]">Talent exists. <br className="hidden sm:block" />Opportunity <span className="text-primary">does not.</span></h2>
+              </div>
+              <div className="space-y-6 lg:space-y-8 text-base sm:text-xl font-bold text-foreground/60 italic leading-relaxed">
+                <p>Millions are trapped in toxic jobs because EMIs don&apos;t allow career risks. Degrees filter out the skilled, while open marketplaces reward only early entrants.</p>
+                <p className="text-foreground">CarryonWORK is the <span className="text-primary">Architecture of Access.</span></p>
+              </div>
+              <Button variant="outline" asChild className="h-14 sm:h-16 px-8 sm:px-10 rounded-xl sm:rounded-2xl font-black text-[10px] sm:text-xs uppercase tracking-widest border-2 border-black hover:bg-black hover:text-white transition-all italic">
+                <Link href="/manifesto">Read The Manifesto</Link>
+              </Button>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
+              {[
+                { title: "No Resumes", icon: <SquareTerminal />, desc: "Your artifact history is your only verified identity." },
+                { title: "No Bidding", icon: <AlertTriangle />, desc: "Nodes are matched based on reputation, not price wars." },
+                { title: "Zero Degree Bias", icon: <GraduationCap />, desc: "Capability defines your access level, not certificates." },
+                { title: "Vault Staking", icon: <Lock />, desc: "100% solvency. Funds are secured before you start." }
+              ].map((item, i) => (
+                <div key={i} className="p-8 sm:p-10 rounded-2xl sm:rounded-[2.5rem] bg-accent/20 border border-black/5 hover:border-primary/20 transition-all duration-700 flex flex-col gap-4 sm:gap-6">
+                  <div className="text-primary">{React.cloneElement(item.icon as React.ReactElement, { className: 'w-6 h-6 sm:w-8 sm:h-8' })}</div>
+                  <h4 className="text-lg sm:text-xl font-black italic uppercase leading-none">{item.title}</h4>
+                  <p className="text-xs sm:text-sm font-bold opacity-40 italic leading-relaxed">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. Roadmap Section */}
       <section id="roadmap" className="py-24 lg:py-48 bg-white relative overflow-hidden px-4 sm:px-8">
         <div className="container mx-auto">
           <div className="text-center mb-20 lg:mb-32 space-y-4">
             <h2 className="text-4xl sm:text-5xl lg:text-7xl font-black tracking-tighter italic uppercase leading-none">
-              Why <span className="text-primary">CarryonWORK?</span>
+              The <span className="text-primary">Execution</span> Path
             </h2>
             <p className="text-foreground/40 font-black text-[10px] sm:text-[11px] uppercase tracking-[0.4em] lg:tracking-[0.5em] italic max-w-2xl mx-auto leading-relaxed">
-              Proof Unlocks Progression. The architecture of execution.
+              Risk-based tasking ensures trust and quality.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-16 lg:gap-y-24 gap-x-12 max-w-6xl mx-auto">
             {[
-              { 
-                icon: <RefreshCw className="w-10 h-10" />, 
-                title: <><b>On-Demand</b> Matching</>, 
-                desc: "Sync with a task node instantly. No waiting, no long bidding cycles or interview theater." 
-              },
-              { 
-                icon: <Layers className="w-10 h-10" />, 
-                title: <><b>Infinity</b> History</>, 
-                desc: "Your artifact ledger is permanent and verified. Build a career legacy based on execution." 
-              },
-              { 
-                icon: <ShieldCheck className="w-10 h-10" />, 
-                title: <><b>Vault</b> Security</>, 
-                desc: "100% solvency guaranteed. Task budgets are staked in the vault before you even start." 
-              },
-              { 
-                icon: <Terminal className="w-10 h-10" />, 
-                title: <><b>Automated</b> Audits</>, 
-                desc: "Zero bias verification. Code and design artifacts are peer-audited in an isolated environment." 
-              },
-              { 
-                icon: <Users className="w-10 h-10" />, 
-                title: <><b>Elite</b> Mesh</>, 
-                desc: "Connect and collaborate with the top 1% of the network for high-velocity outcomes." 
-              },
-              { 
-                icon: <IndianRupee className="w-10 h-10" />, 
-                title: <><b>Direct</b> Settlement</>, 
-                desc: "Immediate payout upon artifact approval. No manual approvals or legacy bank delays." 
-              }
+              { icon: <CheckCircle2 className="w-10 h-10" />, title: <><b>Low-Risk</b> Tasks</>, desc: "Data entry, scheduling, basic Canva. Ideal for freshers to build their first artifact proof." },
+              { icon: <Layers className="w-10 h-10" />, title: <><b>Medium-Risk</b> Tasks</>, desc: "SEO, Content, Ad Monitoring. Supervised execution where freshers work under experienced nodes." },
+              { icon: <Zap className="w-10 h-10" />, title: <><b>High-Risk</b> Tasks</>, desc: "Gateway setup, App deployment. Exclusive to verified, high-reputation executioners." },
+              { icon: <Terminal className="w-10 h-10" />, title: <><b>Fresher</b> Pathway</>, desc: "Complete 8-10 low-risk tasks to unlock independent status. Proof-based meritocracy." },
+              { icon: <Lock className="w-10 h-10" />, title: <><b>Vault</b> Integrity</>, desc: "100% solvency guaranteed. Task budgets are staked before work assignment." },
+              { icon: <RefreshCw className="w-10 h-10" />, title: <><b>No</b> Lock-ins</>, desc: "Task-based freedom. Earn honestly without long-term corporate dependency." }
             ].map((feature, i) => (
               <div key={i} className="flex flex-col items-center text-center gap-6 group">
                 <div className="w-20 h-20 rounded-2xl bg-accent/50 flex items-center justify-center text-primary shadow-inner group-hover:scale-110 transition-transform duration-500">
                   {feature.icon}
                 </div>
                 <div className="space-y-3">
-                   <h3 className="text-xl sm:text-2xl font-black tracking-tight uppercase italic leading-none text-foreground">
-                    {feature.title}
-                   </h3>
-                   <p className="text-foreground/60 text-sm sm:text-base font-bold leading-relaxed italic max-w-xs mx-auto">
-                    {feature.desc}
-                   </p>
+                   <h3 className="text-xl sm:text-2xl font-black tracking-tight uppercase italic leading-none text-foreground">{feature.title}</h3>
+                   <p className="text-foreground/60 text-sm sm:text-base font-bold leading-relaxed italic max-w-xs mx-auto">{feature.desc}</p>
                 </div>
               </div>
             ))}
@@ -383,7 +443,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* 6. Network Nodes Section (Who is it for?) */}
+      {/* 7. Network Nodes Section */}
       <section id="who-is-for" className="py-24 lg:py-48 bg-[#0A0A0B] relative overflow-hidden px-4 sm:px-8">
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.05] pointer-events-none" />
         <div className="container mx-auto relative z-10">
@@ -391,41 +451,17 @@ export default function LandingPage() {
             <h2 className="text-4xl sm:text-5xl lg:text-7xl font-black tracking-tighter italic uppercase text-white leading-none">
               <span className="text-primary">Who</span> Is CarryonWORK For?
             </h2>
-            <p className="text-white/40 font-black text-[10px] uppercase tracking-[0.5em] italic">The 2026 Execution Chain</p>
+            <p className="text-white/40 font-black text-[10px] uppercase tracking-[0.5em] italic">The People We Serve</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-7xl mx-auto">
             {[
-              { 
-                title: "Elite Workers", 
-                icon: <GraduationCap className="w-8 h-8 text-primary" />,
-                desc: "Top 1% executioners who prioritize outcome over hourly logs. Resumes are a legacy distraction."
-              },
-              { 
-                title: "Agile Founders", 
-                icon: <Briefcase className="w-8 h-8 text-primary" />,
-                desc: "Builders who need mission-critical tasks completed without the theater of traditional HR."
-              },
-              { 
-                title: "Enterprise Nodes", 
-                icon: <Monitor className="w-8 h-8 text-primary" />,
-                desc: "High-fidelity organizations seeking zero settlement risk and institutional quality execution."
-              },
-              { 
-                title: "Career Shifters", 
-                icon: <RefreshCw className="w-8 h-8 text-primary" />,
-                desc: "Proven professionals pivoting nodes based on verified artifacts rather than past credentials."
-              },
-              { 
-                title: "Talent Agencies", 
-                icon: <Users className="w-8 h-8 text-primary" />,
-                desc: "Scale your output by managing elite node meshes with complete vault transparency."
-              },
-              { 
-                title: "Indie Hackers", 
-                icon: <Lightbulb className="w-8 h-8 text-primary" />,
-                desc: "Solo architects building the future, one artifact at a time, with guaranteed protocol staking."
-              }
+              { title: "Trapped Professionals", icon: <Briefcase className="w-8 h-8 text-primary" />, desc: "Mentally exhausted in toxic cultures. EMI dependency makes quitting terrifying. We provide your exit protocol." },
+              { title: "Skilled but Unemployed", icon: <RefreshCw className="w-8 h-8 text-primary" />, desc: "Stuck in the 'no experience, no job' loop. We provide the proof-tasks to break the cycle." },
+              { title: "Skilled but Degree-Less", icon: <SquareTerminal className="w-8 h-8 text-primary" />, desc: "Filtered out by HR systems prioritizing platforms over performance. Your artifacts are your degree here." },
+              { title: "Social-Dignity Trapped", icon: <ShieldCheck className="w-8 h-8 text-primary" />, desc: "Capable individuals fearing social judgment of offline 'small' work. Digital work with dignity." },
+              { title: "Talent Agencies", icon: <Users className="w-8 h-8 text-primary" />, desc: "Agencies looking to scale their execution force with verified, task-ready talent." },
+              { title: "Indie Hackers", icon: <Zap className="w-8 h-8 text-primary" />, desc: "Builders who need specific artifacts delivered without the overhead of full-time hiring." }
             ].map((node, i) => (
               <div key={i} className="p-10 bg-[#121214] rounded-3xl border border-white/5 hover:border-primary/20 transition-all duration-700 group flex flex-col gap-6 shadow-2xl relative overflow-hidden">
                 <div className="absolute top-0 right-0 p-8 opacity-[0.02] group-hover:opacity-[0.05] transition-opacity">
@@ -442,22 +478,15 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* 7. Meet Our Founder Section */}
+      {/* 8. Meet Our Founder Section */}
       <section className="py-24 lg:py-48 bg-white overflow-hidden px-4 sm:px-8 border-b">
         <div className="container mx-auto">
           <div className="grid lg:grid-cols-[1fr_1fr] gap-16 lg:gap-32 items-center max-w-7xl mx-auto">
-            
             <div className="relative flex justify-center lg:justify-start order-2 lg:order-1">
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-primary/10 rounded-[30%_70%_70%_30%_/_30%_30%_70%_70%] animate-mesh-drift blur-3xl -z-10" />
               <div className="relative w-full max-w-[500px] aspect-[4/5] rounded-[3rem] lg:rounded-[5rem] overflow-hidden shadow-2xl border-8 border-white group">
                 {founderImg && (
-                  <Image 
-                    src={founderImg.imageUrl} 
-                    alt={founderImg.description} 
-                    fill 
-                    className="object-cover group-hover:scale-105 transition-transform duration-1000"
-                    data-ai-hint={founderImg.imageHint}
-                  />
+                  <Image src={founderImg.imageUrl} alt={founderImg.description} fill className="object-cover group-hover:scale-105 transition-transform duration-1000" data-ai-hint={founderImg.imageHint} />
                 )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
                 <div className="absolute bottom-10 left-10 right-10 z-10">
@@ -472,51 +501,32 @@ export default function LandingPage() {
             <div className="space-y-12 animate-reveal order-1 lg:order-2">
               <div className="space-y-8">
                 <div className="space-y-4">
-                  <Badge className="bg-primary/10 text-primary hover:bg-primary/15 border-none px-6 py-2 rounded-full font-black text-[10px] uppercase tracking-widest italic w-fit">
-                    THE VISIONARY
-                  </Badge>
-                  <h2 className="text-4xl lg:text-7xl font-black tracking-tighter italic uppercase leading-[0.9] lg:leading-[0.85]">
-                    The Mind <br/>Behind the <br/><span className="text-primary">Protocol.</span>
-                  </h2>
+                  <Badge className="bg-primary/10 text-primary hover:bg-primary/15 border-none px-6 py-2 rounded-full font-black text-[10px] uppercase tracking-widest italic w-fit">THE VISIONARY</Badge>
+                  <h2 className="text-4xl lg:text-7xl font-black tracking-tighter italic uppercase leading-[0.9] lg:leading-[0.85]">Lived Reality, <br/>Not a <br/><span className="text-primary">Trend.</span></h2>
                 </div>
                 
                 <div className="space-y-8 text-base sm:text-lg lg:text-xl font-bold text-foreground/70 italic leading-relaxed">
                   <div className="relative pl-8 border-l-4 border-primary/20">
                     <Quote className="absolute -left-3 -top-2 w-8 h-8 text-primary/10 fill-primary/5" />
                     <p className="text-foreground text-xl lg:text-2xl font-black tracking-tight leading-tight uppercase italic mb-6">
-                      "I've built systems for millions. Now, I'm building one for the top 1% executioners."
+                      "On 24 Dec 2025, I walked away. I didn&apos;t celebrate. I thought: EMI kaise jayegi?"
                     </p>
                   </div>
-                  
-                  <p>
-                    Rahul has been a founder since 2009. Having co-founded mission-critical digital solutions and spearheaded large-scale operations across India, he witnessed first-hand how the traditional resume filters high-execution talent out of the system.
-                  </p>
-                  
-                  <p className="text-foreground">
-                    Through <b>CarryonWORK</b>, he has mentored millions of young professionals, identifying the critical gap between "having a degree" and "delivering an outcome." CarryonWORK is the manifestation of that insight—a protocol where your artifacts define your value, not your bio.
-                  </p>
+                  <p>Born in Dankaur, Rahul Rajput knows what it feels like to be trapped in a toxic job because career risks are financially impossible. From starting at ₹10,000 to managing a full-time job alongside MBA assessments, he has seen the system from the bottom.</p>
+                  <p className="text-foreground"><b>CarryonWORK</b> exists so fewer people have to sit silently at night, wondering how the next EMI will be paid despite being capable and skilled. It is a system built for those who choose clarity over comfort.</p>
                 </div>
               </div>
 
-              {/* Social Stats Card */}
               <div className="p-10 rounded-[3rem] bg-[#0A0A0B] text-white shadow-3xl shadow-black/10 space-y-8 relative overflow-hidden group">
                  <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity"><Users className="w-32 h-32" /></div>
                  <div className="space-y-2 relative z-10">
                     <p className="text-[10px] font-black uppercase tracking-[0.4em] text-primary italic">The Trust Mesh</p>
                     <h4 className="text-4xl lg:text-5xl font-black italic uppercase tracking-tighter leading-none">16.3 Million <br/>Followers.</h4>
                  </div>
-                 
                  <div className="flex flex-wrap gap-6 relative z-10">
-                    {[
-                      { icon: <Youtube />, link: "#" },
-                      { icon: <Instagram />, link: "#" },
-                      { icon: <Linkedin />, link: "#" },
-                      { icon: <Music />, link: "#" },
-                      { icon: <Twitter />, link: "#" },
-                      { icon: <Mail />, link: "#" }
-                    ].map((item, i) => (
-                      <Link key={i} href={item.link} className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/40 hover:text-primary hover:bg-white/10 hover:border-primary/20 transition-all duration-500">
-                        {React.cloneElement(item.icon as React.ReactElement, { className: 'w-5 h-5' })}
+                    {[Youtube, Instagram, Linkedin, Music, Twitter, Mail].map((Icon, i) => (
+                      <Link key={i} href="#" className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/40 hover:text-primary hover:bg-white/10 hover:border-primary/20 transition-all duration-500">
+                        <Icon className="w-5 h-5" />
                       </Link>
                     ))}
                  </div>
@@ -526,18 +536,58 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* 8. Premium Protocol Footer */}
+      {/* 9. FAQ Section */}
+      <section className="py-24 lg:py-48 bg-white px-4 sm:px-8 relative overflow-hidden border-t">
+        <div className="container mx-auto">
+          <div className="grid lg:grid-cols-[1fr_1.5fr] gap-16 lg:gap-32 max-w-7xl mx-auto">
+            <div className="space-y-8">
+              <Badge variant="outline" className="text-primary border-primary/20 bg-primary/5 px-6 py-2 rounded-full font-black text-[10px] uppercase tracking-widest italic">RESOLVING UNCERTAINTY</Badge>
+              <h2 className="text-5xl lg:text-8xl font-black tracking-tighter italic uppercase leading-[0.85]">
+                Frequently <br/>
+                Asked <span className="text-primary">Questions.</span>
+              </h2>
+              <div className="pt-8 hidden lg:block">
+                <div className="w-24 h-24 rounded-[2rem] bg-accent/50 flex items-center justify-center text-primary shadow-inner">
+                  <HelpCircle className="w-12 h-12" />
+                </div>
+              </div>
+            </div>
+
+            <Accordion type="single" collapsible className="w-full space-y-4">
+              {FAQ_DATA.map((item, i) => (
+                <AccordionItem 
+                  key={i} 
+                  value={`item-${i}`} 
+                  className="premium-card border-none shadow-sm bg-[#F8F9FA] px-6 sm:px-10 py-2 sm:py-4 data-[state=open]:bg-white data-[state=open]:shadow-2xl transition-all duration-700"
+                >
+                  <AccordionTrigger className="hover:no-underline py-6">
+                    <div className="flex items-center gap-6 text-left">
+                      <div className="w-10 h-10 rounded-xl bg-white border shadow-sm flex items-center justify-center text-primary group-hover:scale-110 transition-transform shrink-0">
+                        {item.icon}
+                      </div>
+                      <span className="text-lg sm:text-xl font-black tracking-tight italic uppercase">{item.question}</span>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent className="pb-8 pt-2 pl-16">
+                    <p className="text-base sm:text-lg font-bold text-muted-foreground/80 leading-relaxed italic border-l-4 border-primary/20 pl-6">
+                      {item.answer}
+                    </p>
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+        </div>
+      </section>
+
+      {/* 10. Premium Protocol Footer */}
       <footer className="py-16 lg:py-32 bg-[#0A0A0B] text-white px-4 sm:px-8 relative overflow-hidden border-t border-white/5">
         <div className="container mx-auto relative z-10 flex flex-col gap-16 lg:gap-32">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-12 gap-12 lg:gap-12">
             <div className="sm:col-span-2 lg:col-span-4 space-y-8 lg:space-y-12">
               <div className="space-y-6 lg:space-y-8">
-                <Link href="/" className="group block">
-                  <Logo variant="light" className="w-auto" />
-                </Link>
-                <p className="text-white/40 font-bold text-xs sm:text-sm italic leading-relaxed max-w-xs">
-                  The world&apos;s first artifact-based execution protocol. Designed for high-velocity outcomes.
-                </p>
+                <Link href="/" className="group block"><Logo variant="light" className="w-auto" /></Link>
+                <p className="text-white/40 font-bold text-xs sm:text-sm italic leading-relaxed max-w-xs">The world&apos;s first artifact-based execution protocol. Designed for high-velocity outcomes.</p>
               </div>
               <div className="flex items-center gap-6 lg:gap-8">
                 <Link href="#" className="text-white/40 hover:text-primary transition-colors"><Twitter className="w-5 h-5" /></Link>
@@ -545,46 +595,34 @@ export default function LandingPage() {
                 <Link href="#" className="text-white/40 hover:text-primary transition-colors"><Linkedin className="w-5 h-5" /></Link>
               </div>
             </div>
-
             <div className="space-y-6 lg:space-y-8 lg:col-span-2">
-              <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-primary italic">The Network</h4>
+              <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-primary italic">Company</h4>
               <nav className="flex flex-col gap-3 sm:gap-4 text-[11px] sm:text-sm font-black text-white/40 uppercase tracking-widest italic">
-                <Link href="#who-is-for" className="hover:text-white transition-colors">Worker Nodes</Link>
-                <Link href="#who-is-for" className="hover:text-white transition-colors">Hirer Nodes</Link>
-                <Link href="#who-is-for" className="hover:text-white transition-colors">Elite Mesh</Link>
-                <Link href="#who-is-for" className="hover:text-white transition-colors">Artifact Hub</Link>
+                <Link href="/about" className="hover:text-white transition-colors">About Us</Link>
+                <Link href="/careers" className="hover:text-white transition-colors">Careers</Link>
               </nav>
             </div>
-
             <div className="space-y-6 lg:space-y-8 lg:col-span-3">
-              <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-primary italic">The Protocol</h4>
+              <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-primary italic">Resources</h4>
               <nav className="flex flex-col gap-3 sm:gap-4 text-[11px] sm:text-sm font-black text-white/40 uppercase tracking-widest italic">
-                <Link href="/manifesto" className="hover:text-white transition-colors">The Manifesto</Link>
-                <Link href="/protocol" className="hover:text-white transition-colors">The Vault</Link>
-                <Link href="/protocol" className="hover:text-white transition-colors">Verification</Link>
-                <Link href="/protocol" className="hover:text-white transition-colors">Reputation</Link>
+                <Link href="/blogs" className="hover:text-white transition-colors">Blogs</Link>
+                <Link href="/contact" className="hover:text-white transition-colors">Contact Us</Link>
               </nav>
             </div>
-
             <div className="space-y-6 lg:space-y-8 lg:col-span-3">
-              <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-primary italic">Legal Node</h4>
+              <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-primary italic">Legal</h4>
               <nav className="flex flex-col gap-3 sm:gap-4 text-[11px] sm:text-sm font-black text-white/40 uppercase tracking-widest italic">
-                <Link href="#" className="hover:text-white transition-colors">Privacy Chain</Link>
-                <Link href="#" className="hover:text-white transition-colors">Terms of Node</Link>
-                <Link href="#" className="hover:text-white transition-colors">SLA Contract</Link>
-                <Link href="#" className="hover:text-white transition-colors">Compliance</Link>
+                <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
+                <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
               </nav>
             </div>
           </div>
-
           <div className="pt-8 sm:pt-16 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 lg:gap-8 text-center md:text-left">
             <div className="flex items-center justify-center md:justify-start gap-4 px-6 py-3 bg-white/5 rounded-full border border-white/10 shadow-inner w-full sm:w-auto">
               <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(34,197,94,1)]" />
               <p className="text-[8px] sm:text-[10px] font-black uppercase tracking-[0.1em] sm:tracking-[0.2em] text-white/60">Node Status: Global v3.4 Active (Latency: 14ms)</p>
             </div>
-            <p className="text-white/20 font-black text-[9px] sm:text-[10px] lg:text-[11px] uppercase tracking-[0.3em] lg:tracking-[0.5em] text-center md:text-right italic">
-              © 2026 Carryon Network Foundation • Mission Critical Execution
-            </p>
+            <p className="text-white/20 font-black text-[9px] sm:text-[10px] lg:text-[11px] uppercase tracking-[0.3em] lg:tracking-[0.5em] text-center md:text-right italic">© 2026 Carryon Network Foundation • Mission Critical Execution</p>
           </div>
         </div>
       </footer>

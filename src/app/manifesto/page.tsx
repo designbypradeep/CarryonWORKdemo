@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Link from 'next/link';
 import { Logo } from '@/components/ui/logo';
@@ -8,7 +9,7 @@ export default function ManifestoPage() {
   return (
     <div className="min-h-screen bg-[#0A0A0B] text-white selection:bg-primary selection:text-white overflow-hidden mesh-gradient-dark animate-mesh-drift">
       <header className="fixed top-0 w-full z-50 p-6 sm:p-10">
-        <div className="container mx-auto flex justify-between items-center">
+        <div className="container mx-auto px-4 lg:px-12 flex justify-between items-center bg-white/10 backdrop-blur-3xl border border-white/10 rounded-2xl h-16 sm:h-20 lg:h-32">
           <Link href="/">
             <Logo variant="light" className="w-48" />
           </Link>
@@ -94,32 +95,26 @@ export default function ManifestoPage() {
             </div>
 
             <div className="space-y-8 lg:col-span-2">
-              <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-primary italic">The Network</h4>
+              <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-primary italic">Company</h4>
               <nav className="flex flex-col gap-4 text-sm font-black text-white/40 uppercase tracking-widest italic">
-                <Link href="/#who-is-for" className="hover:text-white transition-colors">Worker Nodes</Link>
-                <Link href="/#who-is-for" className="hover:text-white transition-colors">Hirer Nodes</Link>
-                <Link href="/#who-is-for" className="hover:text-white transition-colors">Elite Mesh</Link>
-                <Link href="/#who-is-for" className="hover:text-white transition-colors">Artifact Hub</Link>
+                <Link href="/about" className="hover:text-white transition-colors">About Us</Link>
+                <Link href="/careers" className="hover:text-white transition-colors">Careers</Link>
               </nav>
             </div>
 
             <div className="space-y-8 lg:col-span-3">
-              <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-primary italic">The Protocol</h4>
+              <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-primary italic">Resources</h4>
               <nav className="flex flex-col gap-4 text-sm font-black text-white/40 uppercase tracking-widest italic">
-                <Link href="/manifesto" className="hover:text-white transition-colors">The Manifesto</Link>
-                <Link href="/protocol" className="hover:text-white transition-colors">The Vault</Link>
-                <Link href="/protocol" className="hover:text-white transition-colors">Verification</Link>
-                <Link href="/protocol" className="hover:text-white transition-colors">Reputation</Link>
+                <Link href="/blogs" className="hover:text-white transition-colors">Blogs</Link>
+                <Link href="/contact" className="hover:text-white transition-colors">Contact Us</Link>
               </nav>
             </div>
 
             <div className="space-y-8 lg:col-span-3">
-              <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-primary italic">Legal Node</h4>
+              <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-primary italic">Legal</h4>
               <nav className="flex flex-col gap-4 text-sm font-black text-white/40 uppercase tracking-widest italic">
-                <Link href="#" className="hover:text-white transition-colors">Privacy Chain</Link>
-                <Link href="#" className="hover:text-white transition-colors">Terms of Node</Link>
-                <Link href="#" className="hover:text-white transition-colors">SLA Contract</Link>
-                <Link href="#" className="hover:text-white transition-colors">Compliance</Link>
+                <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
+                <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
               </nav>
             </div>
           </div>

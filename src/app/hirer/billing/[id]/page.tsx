@@ -1,6 +1,6 @@
 "use client"
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import DashboardLayout from '@/components/layout/DashboardLayout';
 import { 
@@ -33,10 +33,15 @@ export default function ProtocolBillingPage() {
   const { id } = useParams();
   const router = useRouter();
   const { tasks, users } = useAppContext();
+  const [invoiceDate, setInvoiceDate] = useState<string>('');
   
   const task = tasks.find(t => t.id === id);
   const worker = users.find(u => u.id === task?.workerId);
   
+  useEffect(() => {
+    setInvoiceDate(new Date().toLocaleDateString());
+  }, []);
+
   if (!task) return <div>Task not found</div>;
 
   const platformFee = task.budget * 0.05;
@@ -80,7 +85,7 @@ export default function ProtocolBillingPage() {
                 <div className="inline-flex items-center gap-3 px-4 py-2 bg-green-500/10 border border-green-500/20 rounded-full text-green-500 font-black text-[10px] uppercase tracking-widest">
                   <CheckCircle2 className="w-4 h-4" /> Settlement Confirmed
                 </div>
-                <p className="text-xs font-bold text-white/30 uppercase tracking-widest">{new Date().toLocaleDateString()}</p>
+                <p className="text-xs font-bold text-white/30 uppercase tracking-widest">{invoiceDate}</p>
               </div>
             </div>
           </CardHeader>
