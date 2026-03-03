@@ -109,23 +109,25 @@ export default function LandingPage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-white selection:bg-primary selection:text-white grainy-bg overflow-x-hidden">
-      <header className={`fixed top-0 w-full z-50 transition-all duration-1000 px-4 sm:px-8 pt-4 sm:pt-6 ${isScrolled ? 'py-2' : 'py-4 lg:py-10'}`}>
-        <div className={`container mx-auto px-4 lg:px-12 flex justify-between items-center bg-white/60 backdrop-blur-3xl border border-white/20 rounded-2xl lg:rounded-[2.5rem] h-16 sm:h-20 lg:h-32 transition-all duration-1000 ${isScrolled ? 'shadow-2xl shadow-black/10 h-14 sm:h-16 lg:h-24' : 'shadow-none'}`}>
+      <header className={`fixed top-0 w-full z-50 transition-all duration-1000 px-4 sm:px-8 pt-4 sm:pt-6 ${isScrolled ? 'py-2' : 'py-4 lg:py-6'}`}>
+        <div className={`container mx-auto px-4 lg:px-12 flex justify-between items-center bg-white/60 backdrop-blur-3xl border border-white/20 rounded-2xl lg:rounded-[3rem] h-16 sm:h-20 lg:h-24 transition-all duration-1000 ${isScrolled ? 'shadow-2xl shadow-black/10 h-14 sm:h-16 lg:h-20' : 'shadow-none'}`}>
           <Link href="/" className="group shrink-0">
             <Logo className="w-auto" />
           </Link>
-          <nav className="hidden lg:flex items-center gap-6 xl:gap-10">
-            <Link href="/manifesto" className="text-[10px] font-black uppercase tracking-[0.4em] text-foreground/60 hover:text-primary transition-all duration-700">Manifesto</Link>
-            <Link href="/protocol" className="text-[10px] font-black uppercase tracking-[0.4em] text-foreground/60 hover:text-primary transition-all duration-700">Protocol</Link>
-            <Link href="#who-is-for" className="text-[10px] font-black uppercase tracking-[0.4em] text-foreground/60 hover:text-primary transition-all duration-700">The Network</Link>
-            <Button variant="outline" asChild className="rounded-full font-black text-[10px] uppercase tracking-widest px-8 h-12 lg:h-16 border-foreground/10 hover:border-primary transition-all duration-500 shadow-sm bg-white/40">
-              <Link href="/auth/login">Sign In</Link>
-            </Button>
-            <Button asChild className="rounded-[2.5rem] px-8 h-14 xl:h-20 font-black shadow-[0_30px_60px_-15px_rgba(255,100,0,0.4)] btn-premium group flex items-center gap-4 text-[11px] xl:text-sm italic uppercase">
-              <Link href="/auth/signup">
-                Apply Now <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-700" />
-              </Link>
-            </Button>
+          <nav className="hidden lg:flex items-center gap-8 xl:gap-14">
+            <Link href="/manifesto" className="text-[10px] font-black uppercase tracking-[0.5em] text-[#1A2C35]/60 hover:text-primary transition-all duration-700">Manifesto</Link>
+            <Link href="/protocol" className="text-[10px] font-black uppercase tracking-[0.5em] text-[#1A2C35]/60 hover:text-primary transition-all duration-700">Protocol</Link>
+            <Link href="#who-is-for" className="text-[10px] font-black uppercase tracking-[0.5em] text-[#1A2C35]/60 hover:text-primary transition-all duration-700">The Network</Link>
+            <div className="flex items-center gap-4">
+              <Button variant="outline" asChild className="rounded-full font-black text-[10px] uppercase tracking-[0.2em] px-10 h-14 border-[#1A2C35]/10 hover:border-primary transition-all duration-500 shadow-sm bg-white/40">
+                <Link href="/auth/login">Sign In</Link>
+              </Button>
+              <Button asChild className="rounded-full px-10 h-14 font-black shadow-[0_30px_60px_-15px_rgba(255,100,0,0.4)] btn-premium group flex items-center gap-4 text-[11px] italic uppercase">
+                <Link href="/auth/signup">
+                  Apply Now <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-700" />
+                </Link>
+              </Button>
+            </div>
           </nav>
           <div className="flex items-center gap-2 lg:hidden">
             <Button size="sm" variant="ghost" asChild className="rounded-full font-black text-[10px] uppercase tracking-widest px-4 h-10">
@@ -138,83 +140,83 @@ export default function LandingPage() {
         </div>
       </header>
 
-      {/* 1. Cinematic Hero */}
-      <section className="relative pt-32 pb-16 sm:pt-48 sm:pb-24 lg:pt-64 lg:pb-32 xl:pt-80 xl:pb-48 overflow-hidden px-4 sm:px-8">
+      {/* 1. Cinematic Hero - Adjusted for high-fidelity desktop reference */}
+      <section className="relative min-h-screen flex flex-col items-center justify-center pt-24 sm:pt-32 lg:pt-40 pb-12 overflow-hidden px-4 sm:px-8">
         <div className="absolute inset-0 -z-10 overflow-hidden">
-          <div className="absolute top-[-15%] left-[5%] w-[300px] sm:w-[600px] lg:w-[1200px] h-[300px] sm:h-[600px] lg:h-[1200px] bg-primary/20 rounded-full blur-[80px] lg:blur-[220px] animate-pulse-soft" />
-          <div className="absolute bottom-[-15%] right-[5%] w-[350px] sm:w-[700px] lg:w-[1400px] h-[350px] sm:h-[700px] lg:h-[1400px] bg-orange-500/15 rounded-full blur-[100px] lg:blur-[280px] animate-pulse-soft delay-2" />
+          <div className="absolute top-[-15%] left-[5%] w-[300px] sm:w-[600px] lg:w-[1200px] h-[300px] sm:h-[600px] lg:h-[1200px] bg-primary/10 rounded-full blur-[80px] lg:blur-[220px] animate-pulse-soft" />
+          <div className="absolute bottom-[-15%] right-[5%] w-[350px] sm:w-[700px] lg:w-[1400px] h-[350px] sm:h-[700px] lg:h-[1400px] bg-orange-500/10 rounded-full blur-[100px] lg:blur-[280px] animate-pulse-soft delay-2" />
         </div>
 
         <div className="container mx-auto flex flex-col items-center relative z-10 text-center">
-          <div className="flex flex-col gap-6 lg:gap-10 animate-reveal items-center max-w-5xl">
-            <div className="inline-flex items-center gap-4 bg-primary text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-black text-[9px] sm:text-[10px] lg:text-xs uppercase tracking-[0.4em] lg:tracking-[0.6em] shadow-3xl">
+          <div className="flex flex-col gap-6 lg:gap-8 animate-reveal items-center max-w-7xl">
+            <div className="inline-flex items-center gap-4 bg-primary text-white px-8 py-3 rounded-full font-black text-[9px] sm:text-[10px] lg:text-xs uppercase tracking-[0.4em] lg:tracking-[0.6em] shadow-3xl">
               <Flame className="w-4 h-4 animate-pulse shrink-0" /> <span>Real Tasks. Real Proof. Real Payment.</span>
             </div>
             
-            <h1 className="text-4xl sm:text-6xl lg:text-8xl xl:text-[9.5rem] font-black leading-[0.95] sm:leading-[0.9] lg:leading-[0.8] tracking-tighter text-gradient italic uppercase">
-              The Resume <br />
-              <span className="text-primary not-italic">is Dead.</span> <br />
-              Sync Your Node.
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl xl:text-[8rem] font-black leading-[0.95] tracking-tighter italic uppercase text-[#1A2C35]">
+              THE RESUME <br />
+              <span className="text-primary">IS DEAD.</span> <br />
+              SYNC YOUR NODE.
             </h1>
 
-            <div className="text-base sm:text-xl lg:text-2xl xl:text-3xl text-foreground/80 max-w-3xl leading-tight font-bold italic">
+            <div className="text-base sm:text-xl lg:text-2xl text-[#1A2C35]/80 max-w-3xl leading-tight font-bold italic">
               <p>Built for those who can&apos;t afford to quit recklessly.</p>
-              <p className="text-foreground mt-1 lg:mt-2">CarryonWORK is an <span className="text-primary">Architecture of Outcomes.</span></p>
+              <p className="text-[#1A2C35] mt-2">CarryonWORK is an <span className="text-primary italic">Architecture of Outcomes.</span></p>
             </div>
 
             {!showGetStartedOptions ? (
               <div className="mt-8 lg:mt-12 flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 w-full max-w-2xl">
                 <Button 
                   size="lg" 
-                  className="rounded-[2rem] lg:rounded-[3rem] w-full sm:w-1/2 px-10 h-16 sm:h-20 lg:h-24 text-lg lg:text-2xl font-black shadow-[0_20px_40px_-10px_rgba(255,100,0,0.4)] btn-premium italic"
+                  className="rounded-full w-full sm:w-[300px] px-10 h-16 lg:h-20 text-lg lg:text-xl font-black shadow-[0_20px_40px_-10px_rgba(255,100,0,0.4)] btn-premium italic group"
                   onClick={handleGetStarted}
                 >
-                  Get Started <ChevronRight className="w-5 h-5 ml-2" />
+                  Get Started <ChevronRight className="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform" />
                 </Button>
                 <Button 
                   variant="outline"
                   size="lg" 
-                  className="rounded-[2rem] lg:rounded-[3rem] w-full sm:w-1/2 px-10 h-16 sm:h-20 lg:h-24 text-lg lg:text-2xl font-black border-2 border-foreground/10 hover:border-primary transition-all duration-500 italic"
+                  className="rounded-full w-full sm:w-[300px] px-10 h-16 lg:h-20 text-lg lg:text-xl font-black border-2 border-[#1A2C35]/10 hover:border-primary transition-all duration-500 italic text-[#1A2C35]"
                   onClick={scrollToDemo}
                 >
                   Demo
                 </Button>
               </div>
             ) : (
-              <div className="mt-8 lg:mt-16 w-full max-w-5xl animate-reveal flex flex-col items-center gap-6">
-                <p className="text-sm font-black text-muted-foreground uppercase tracking-[0.4em] italic mb-4">What do you want to do? (you can edit this later)</p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+              <div className="mt-8 lg:mt-12 w-full max-w-5xl animate-reveal flex flex-col items-center gap-6">
+                <p className="text-sm font-black text-muted-foreground uppercase tracking-[0.4em] italic mb-2">What do you want to do?</p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6 w-full max-w-4xl">
                   <Link href="/auth/signup?role=worker" className="group">
-                    <div className="h-40 md:h-64 rounded-3xl bg-primary flex items-center justify-center p-8 text-white shadow-2xl hover:scale-[1.02] transition-all duration-500">
+                    <div className="h-32 md:h-48 rounded-3xl bg-primary flex items-center justify-center p-6 text-white shadow-2xl hover:scale-[1.02] transition-all duration-500">
                       <div className="space-y-2 text-center">
                         <p className="text-xs font-black uppercase tracking-widest opacity-80">I want to</p>
-                        <h3 className="text-2xl md:text-4xl font-black italic uppercase tracking-tighter leading-none">Work as a <br/>Freelancer</h3>
+                        <h3 className="text-xl md:text-3xl font-black italic uppercase tracking-tighter leading-none">Work as a <br/>Freelancer</h3>
                       </div>
                     </div>
                   </Link>
                   <Link href="/auth/signup?role=hirer" className="group">
-                    <div className="h-40 md:h-64 rounded-3xl bg-white border-2 border-primary flex items-center justify-center p-8 text-primary shadow-2xl hover:scale-[1.02] transition-all duration-500">
+                    <div className="h-32 md:h-48 rounded-3xl bg-white border-2 border-primary flex items-center justify-center p-6 text-primary shadow-2xl hover:scale-[1.02] transition-all duration-500">
                       <div className="space-y-2 text-center">
                         <p className="text-xs font-black uppercase tracking-widest opacity-80">I want to</p>
-                        <h3 className="text-2xl md:text-4xl font-black italic uppercase tracking-tighter leading-none">Hire a <br/>Freelancer</h3>
+                        <h3 className="text-xl md:text-3xl font-black italic uppercase tracking-tighter leading-none">Hire a <br/>Freelancer</h3>
                       </div>
                     </div>
                   </Link>
                 </div>
                 
-                <Link href="/auth/signup?role=worker&intent=learn" className="w-full group">
-                  <div className="h-32 md:h-40 rounded-3xl bg-primary flex items-center justify-center p-8 text-white shadow-2xl hover:scale-[1.01] transition-all duration-500 relative overflow-hidden">
-                    <div className="absolute top-0 right-0 p-4 opacity-10"><BookOpen className="w-20 h-20" /></div>
-                    <div className="space-y-2 text-center relative z-10">
+                <Link href="/auth/signup?role=worker&intent=learn" className="w-full max-w-4xl group">
+                  <div className="h-24 md:h-32 rounded-3xl bg-primary flex items-center justify-center p-6 text-white shadow-2xl hover:scale-[1.01] transition-all duration-500 relative overflow-hidden">
+                    <div className="absolute top-0 right-0 p-4 opacity-10"><BookOpen className="w-16 h-16" /></div>
+                    <div className="space-y-1 text-center relative z-10">
                       <p className="text-[10px] font-black uppercase tracking-widest opacity-70">The Learning Pathway</p>
-                      <h3 className="text-xl md:text-3xl font-black italic uppercase tracking-tighter leading-none">I Want to Learn First and Then Earn</h3>
+                      <h3 className="text-lg md:text-2xl font-black italic uppercase tracking-tighter leading-none">I Want to Learn First and Then Earn</h3>
                     </div>
                   </div>
                 </Link>
 
                 <Button 
                   variant="ghost" 
-                  className="mt-4 text-[10px] font-black uppercase tracking-[0.3em] text-muted-foreground hover:text-primary"
+                  className="mt-2 text-[10px] font-black uppercase tracking-[0.3em] text-muted-foreground hover:text-primary"
                   onClick={() => setShowGetStartedOptions(false)}
                 >
                   Back to selection
