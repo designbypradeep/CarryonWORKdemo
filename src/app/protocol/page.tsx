@@ -64,7 +64,7 @@ export default function ProtocolPage() {
           <section className="space-y-12 animate-reveal">
             <div className="space-y-6">
               <p className="text-[11px] font-black uppercase tracking-[0.5em] text-primary">Technical Specification</p>
-              <h1 className="text-6xl lg:text-9xl font-black italic leading-[0.8] tracking-tighter uppercase">The Vault <br/>Architecture.</h1>
+              <h1 className="text-6xl lg:text-8xl font-black italic leading-[0.8] tracking-tighter uppercase">The Vault <br/>Architecture.</h1>
               <p className="text-xl lg:text-3xl font-bold text-black/50 leading-tight italic max-w-4xl pt-8">
                 Meritocracy enforced by code. Every project is a self-contained node on the Carryon execution chain.
               </p>

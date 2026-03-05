@@ -22,11 +22,11 @@ export default function BlogsPage() {
         </div>
       </header>
 
-      <main className="container mx-auto px-6 pt-48 pb-32 max-w-6xl">
+      <main className="container mx-auto px-6 pt-32 pb-32 max-w-6xl">
         <section className="space-y-16 animate-reveal">
           <div className="space-y-6 text-center">
             <p className="text-[11px] font-black uppercase tracking-[0.5em] text-primary">Execution Insights</p>
-            <h1 className="text-6xl lg:text-9xl font-black italic leading-[0.8] tracking-tighter uppercase">The Ledger <br/>Blogs.</h1>
+            <h1 className="text-6xl lg:text-8xl font-black italic leading-[0.8] tracking-tighter uppercase">The Ledger <br/>Blogs.</h1>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">

@@ -139,7 +139,7 @@ export default function LandingPage() {
       </header>
 
       {/* 1. Cinematic Hero */}
-      <section className="relative pt-32 pb-16 sm:pt-48 sm:pb-24 lg:pt-64 lg:pb-32 xl:pt-80 xl:pb-48 overflow-hidden px-4 sm:px-8">
+      <section className="relative pt-32 lg:pt-40 xl:pt-48 pb-16 lg:pb-32 overflow-hidden px-4 sm:px-8">
         <div className="absolute inset-0 -z-10 overflow-hidden">
           <div className="absolute top-[-15%] left-[5%] w-[300px] sm:w-[600px] lg:w-[1200px] h-[300px] sm:h-[600px] lg:h-[1200px] bg-primary/20 rounded-full blur-[80px] lg:blur-[220px] animate-pulse-soft" />
           <div className="absolute bottom-[-15%] right-[5%] w-[350px] sm:w-[700px] lg:w-[1400px] h-[350px] sm:h-[700px] lg:h-[1400px] bg-orange-500/15 rounded-full blur-[100px] lg:blur-[280px] animate-pulse-soft delay-2" />
@@ -187,8 +187,8 @@ export default function LandingPage() {
                   <Link href="/auth/signup?role=worker" className="group">
                     <div className="h-40 md:h-64 rounded-3xl bg-primary flex items-center justify-center p-8 text-white shadow-2xl hover:scale-[1.02] transition-all duration-500">
                       <div className="space-y-2 text-center">
-                        <p className="text-xs font-black uppercase tracking-widest opacity-80">I want to</p>
-                        <h3 className="text-2xl md:text-4xl font-black italic uppercase tracking-tighter leading-none">Work as a <br/>Freelancer</h3>
+                        <p className="text-xs font-black uppercase tracking-widest text-black opacity-80">I want to</p>
+                        <h3 className="text-2xl md:text-4xl font-black italic uppercase tracking-tighter leading-none text-white">Work as a <br/>Freelancer</h3>
                       </div>
                     </div>
                   </Link>
@@ -206,8 +206,8 @@ export default function LandingPage() {
                   <div className="h-32 md:h-40 rounded-3xl bg-primary flex items-center justify-center p-8 text-white shadow-2xl hover:scale-[1.01] transition-all duration-500 relative overflow-hidden">
                     <div className="absolute top-0 right-0 p-4 opacity-10"><BookOpen className="w-20 h-20" /></div>
                     <div className="space-y-2 text-center relative z-10">
-                      <p className="text-[10px] font-black uppercase tracking-widest opacity-70">The Learning Pathway</p>
-                      <h3 className="text-xl md:text-3xl font-black italic uppercase tracking-tighter leading-none">I Want to Learn First and Then Earn</h3>
+                      <p className="text-[15px] font-black uppercase tracking-widest opacity-100 text-black">The Learning Pathway</p>
+                      <h3 className="text-xl md:text-3xl font-black italic uppercase tracking-tighter leading-none text-white">I Want to Learn First and Then Earn</h3>
                     </div>
                   </div>
                 </Link>
@@ -484,9 +484,9 @@ export default function LandingPage() {
           <div className="grid lg:grid-cols-[1fr_1fr] gap-16 lg:gap-32 items-center max-w-7xl mx-auto">
             <div className="relative flex justify-center lg:justify-start order-2 lg:order-1">
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-primary/10 rounded-[30%_70%_70%_30%_/_30%_30%_70%_70%] animate-mesh-drift blur-3xl -z-10" />
-              <div className="relative w-full max-w-[500px] aspect-[4/5] rounded-[3rem] lg:rounded-[5rem] overflow-hidden shadow-2xl border-8 border-white group">
+              <div className="relative w-full max-w-[500px] aspect-[4/5] rounded-[3rem] lg:rounded-[5rem] overflow-hidden shadow-2xl border-... group">
                 {founderImg && (
-                  <Image src={founderImg.imageUrl} alt={founderImg.description} fill className="object-cover group-hover:scale-105 transition-transform duration-1000" data-ai-hint={founderImg.imageHint} />
+                  <Image src="/Rahul.png" alt={founderImg.description} fill className="object-cover group-hover:scale-105 transition-transform duration-1000" data-ai-hint={founderImg.imageHint} />
                 )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
                 <div className="absolute bottom-10 left-10 right-10 z-10">

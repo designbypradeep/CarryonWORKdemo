@@ -27,7 +27,7 @@ export default function CareersPage() {
             <div className="inline-flex items-center gap-3 px-6 py-2 bg-primary/10 border border-primary/20 rounded-full text-primary font-black text-[10px] uppercase tracking-widest mx-auto">
               <Rocket className="w-4 h-4" /> Hiring Now
             </div>
-            <h1 className="text-6xl lg:text-9xl font-black italic leading-[0.8] tracking-tighter uppercase">Build the <br/>Protocol.</h1>
+            <h1 className="text-6xl lg:text-8xl font-black italic leading-[0.8] tracking-tighter uppercase">Build the <br/>Protocol.</h1>
             <p className="text-xl lg:text-2xl font-bold text-black/50 leading-tight italic max-w-2xl mx-auto pt-8">
               We aren't looking for employees. We are looking for architects, builders, and executioners who believe the resume is dead.
             </p>

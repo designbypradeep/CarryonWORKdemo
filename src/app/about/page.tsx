@@ -25,7 +25,7 @@ export default function AboutPage() {
         <section className="space-y-16 animate-reveal">
           <div className="space-y-6">
             <p className="text-[11px] font-black uppercase tracking-[0.5em] text-primary">The Vision</p>
-            <h1 className="text-6xl lg:text-9xl font-black italic leading-[0.8] tracking-tighter uppercase">Architecture <br/>of Access.</h1>
+            <h1 className="text-6xl lg:text-8xl font-black italic leading-[0.8] tracking-tighter uppercase">Architecture <br/>of Access.</h1>
             <p className="text-xl lg:text-3xl font-bold text-black/50 leading-tight italic max-w-4xl pt-8">
               CarryonWORK is a skill-first execution protocol. We bypass the resume and degree filter, allowing you to prove your worth through real, task-based outcomes.
             </p>
