@@ -109,8 +109,8 @@ export default function LandingPage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-white selection:bg-primary selection:text-white grainy-bg overflow-x-hidden">
-      <header className={`fixed top-0 w-full z-50 transition-all duration-1000 px-4 sm:px-8 pt-4 sm:pt-6 ${isScrolled ? 'py-2' : 'py-4 lg:py-10'}`}>
-        <div className={`container mx-auto px-4 lg:px-12 flex justify-between items-center bg-white/60 backdrop-blur-3xl border border-white/20 rounded-2xl lg:rounded-[2.5rem] h-16 sm:h-20 lg:h-32 transition-all duration-1000 ${isScrolled ? 'shadow-2xl shadow-black/10 h-14 sm:h-16 lg:h-24' : 'shadow-none'}`}>
+      <header className={`fixed top-0 w-full z-50 transition-all duration-1000 px-4 sm:px-8 pt-2 sm:pt-4 ${isScrolled ? 'py-1' : 'py-2'}`}>
+        <div className={`container mx-auto px-4 lg:px-12 flex justify-between items-center bg-white/60 backdrop-blur-3xl border border-white/20 rounded-2xl lg:rounded-[2.5rem] h-16 sm:h-20 transition-all duration-1000 ${isScrolled ? 'shadow-2xl shadow-black/10 h-14 sm:h-16 lg:h-18' : 'shadow-none'}`}>
           <Link href="/" className="group shrink-0">
             <Logo className="w-auto" />
           </Link>
@@ -118,10 +118,10 @@ export default function LandingPage() {
             <Link href="/manifesto" className="text-[10px] font-black uppercase tracking-[0.4em] text-foreground/60 hover:text-primary transition-all duration-700">Manifesto</Link>
             <Link href="/protocol" className="text-[10px] font-black uppercase tracking-[0.4em] text-foreground/60 hover:text-primary transition-all duration-700">Protocol</Link>
             <Link href="#who-is-for" className="text-[10px] font-black uppercase tracking-[0.4em] text-foreground/60 hover:text-primary transition-all duration-700">The Network</Link>
-            <Button variant="outline" asChild className="rounded-full font-black text-[10px] uppercase tracking-widest px-8 h-12 lg:h-16 border-foreground/10 hover:border-primary transition-all duration-500 shadow-sm bg-white/40">
+            <Button variant="outline" asChild className="rounded-full font-black text-[10px] uppercase tracking-widest px-8 h-10 xl:h-12 border-foreground/10 hover:border-primary transition-all duration-500 shadow-sm bg-white/40">
               <Link href="/auth/login">Sign In</Link>
             </Button>
-            <Button asChild className="rounded-[2.5rem] px-8 h-14 xl:h-20 font-black shadow-[0_30px_60px_-15px_rgba(255,100,0,0.4)] btn-premium group flex items-center gap-4 text-[11px] xl:text-sm italic uppercase">
+            <Button asChild className="rounded-[2.5rem] px-8 h-12 xl:h-14 font-black shadow-[0_30px_60px_-15px_rgba(255,100,0,0.4)] btn-premium group flex items-center gap-4 text-[11px] xl:text-xs italic uppercase">
               <Link href="/auth/signup">
                 Apply Now <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-700" />
               </Link>
@@ -138,86 +138,92 @@ export default function LandingPage() {
         </div>
       </header>
 
-      {/* 1. Cinematic Hero */}
-      <section className="relative pt-32 lg:pt-40 xl:pt-48 pb-16 lg:pb-32 overflow-hidden px-4 sm:px-8">
+      {/* Cinematic Hero */}
+      <section className="relative min-h-screen flex flex-col items-center justify-center pt-24 lg:pt-32 xl:pt-36 pb-12 overflow-hidden px-4 sm:px-8">
         <div className="absolute inset-0 -z-10 overflow-hidden">
-          <div className="absolute top-[-15%] left-[5%] w-[300px] sm:w-[600px] lg:w-[1200px] h-[300px] sm:h-[600px] lg:h-[1200px] bg-primary/20 rounded-full blur-[80px] lg:blur-[220px] animate-pulse-soft" />
-          <div className="absolute bottom-[-15%] right-[5%] w-[350px] sm:w-[700px] lg:w-[1400px] h-[350px] sm:h-[700px] lg:h-[1400px] bg-orange-500/15 rounded-full blur-[100px] lg:blur-[280px] animate-pulse-soft delay-2" />
+          <div className="absolute top-[-15%] left-[5%] w-[300px] sm:w-[600px] lg:w-[1000px] h-[300px] sm:h-[600px] lg:h-[1000px] bg-primary/10 rounded-full blur-[80px] lg:blur-[200px] animate-pulse-soft" />
+          <div className="absolute bottom-[-15%] right-[5%] w-[350px] sm:w-[700px] lg:w-[1200px] h-[350px] sm:h-[700px] lg:h-[1200px] bg-orange-500/10 rounded-full blur-[100px] lg:blur-[250px] animate-pulse-soft delay-2" />
         </div>
 
         <div className="container mx-auto flex flex-col items-center relative z-10 text-center">
-          <div className="flex flex-col gap-6 lg:gap-10 animate-reveal items-center max-w-5xl">
-            <div className="inline-flex items-center gap-4 bg-primary text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-black text-[9px] sm:text-[10px] lg:text-xs uppercase tracking-[0.4em] lg:tracking-[0.6em] shadow-3xl">
-              <Flame className="w-4 h-4 animate-pulse shrink-0" /> <span>Real Tasks. Real Proof. Real Payment.</span>
+          <div className="flex flex-col gap-2 lg:gap-3 animate-reveal items-center max-w-7xl w-full">
+            <div className="inline-flex items-center gap-4 bg-primary text-white px-6 sm:px-8 py-1.5 sm:py-2 rounded-full font-black text-[9px] sm:text-[10px] uppercase tracking-[0.4em] lg:tracking-[0.5em] shadow-3xl mb-4 lg:mb-6">
+              <Flame className="w-3.5 h-3.5 animate-pulse shrink-0" /> <span>Real Tasks. Real Proof. Real Payment.</span>
             </div>
             
-            <h1 className="text-4xl sm:text-6xl lg:text-8xl xl:text-[9.5rem] font-black leading-[0.95] sm:leading-[0.9] lg:leading-[0.8] tracking-tighter text-gradient italic uppercase">
-              The Resume <br />
-              <span className="text-primary not-italic">is Dead.</span> <br />
-              Sync Your Node.
-            </h1>
+            <div className="space-y-0 leading-none">
+              <h1 className="text-3xl sm:text-5xl lg:text-[5rem] xl:text-[6rem] font-black tracking-tighter italic uppercase text-[#1A2C35]">
+                THE RESUME
+              </h1>
+              <h1 className="text-3xl sm:text-5xl lg:text-[5rem] xl:text-[6rem] font-black tracking-tighter italic uppercase text-primary">
+                IS DEAD.
+              </h1>
+              <h1 className="text-3xl sm:text-5xl lg:text-[5rem] xl:text-[6rem] font-black tracking-tighter italic uppercase text-[#1A2C35]">
+                SYNC YOUR NODE.
+              </h1>
+            </div>
 
-            <div className="text-base sm:text-xl lg:text-2xl xl:text-3xl text-foreground/80 max-w-3xl leading-tight font-bold italic">
+            <div className="text-xs sm:text-sm lg:text-lg text-foreground/80 max-w-3xl leading-tight font-bold italic mt-4 lg:mt-6">
               <p>Built for those who can&apos;t afford to quit recklessly.</p>
-              <p className="text-foreground mt-1 lg:mt-2">CarryonWORK is an <span className="text-primary">Architecture of Outcomes.</span></p>
+              <p className="text-foreground mt-1">CarryonWORK is an <span className="text-primary">Architecture of Outcomes.</span></p>
             </div>
 
             {!showGetStartedOptions ? (
-              <div className="mt-8 lg:mt-12 flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 w-full max-w-2xl">
+              <div className="mt-8 lg:mt-10 flex flex-col sm:flex-row justify-center items-center gap-4 lg:gap-6 w-full max-w-4xl">
                 <Button 
                   size="lg" 
-                  className="rounded-[2rem] lg:rounded-[3rem] w-full sm:w-1/2 px-10 h-16 sm:h-20 lg:h-24 text-lg lg:text-2xl font-black shadow-[0_20px_40px_-10px_rgba(255,100,0,0.4)] btn-premium italic"
+                  className="rounded-[2.5rem] lg:rounded-[3.5rem] w-full sm:w-[260px] px-8 h-14 lg:h-18 text-base lg:text-lg font-black shadow-[0_20px_40px_-10px_rgba(255,100,0,0.4)] btn-premium italic group"
                   onClick={handleGetStarted}
                 >
-                  Get Started <ChevronRight className="w-5 h-5 ml-2" />
+                  Get Started <ChevronRight className="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform" />
                 </Button>
                 <Button 
                   variant="outline"
                   size="lg" 
-                  className="rounded-[2rem] lg:rounded-[3rem] w-full sm:w-1/2 px-10 h-16 sm:h-20 lg:h-24 text-lg lg:text-2xl font-black border-2 border-foreground/10 hover:border-primary transition-all duration-500 italic"
+                  className="rounded-[2.5rem] lg:rounded-[3.5rem] w-full sm:w-[260px] px-8 h-14 lg:h-18 text-base lg:text-lg font-black border-2 border-foreground/10 hover:border-primary transition-all duration-500 italic bg-white/40 backdrop-blur-sm"
                   onClick={scrollToDemo}
                 >
                   Demo
                 </Button>
               </div>
             ) : (
-              <div className="mt-8 lg:mt-16 w-full max-w-5xl animate-reveal flex flex-col items-center gap-6">
-                <p className="text-sm font-black text-muted-foreground uppercase tracking-[0.4em] italic mb-4">What do you want to do? (you can edit this later)</p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+              <div className="mt-6 lg:mt-8 w-full max-w-5xl animate-reveal flex flex-col items-center gap-3">
+                <p className="text-[9px] lg:text-[10px] font-black text-muted-foreground uppercase tracking-[0.5em] italic mb-1">What is your objective?</p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 lg:gap-4 w-full">
                   <Link href="/auth/signup?role=worker" className="group">
-                    <div className="h-40 md:h-64 rounded-3xl bg-primary flex items-center justify-center p-8 text-white shadow-2xl hover:scale-[1.02] transition-all duration-500">
-                      <div className="space-y-2 text-center">
-                        <p className="text-xs font-black uppercase tracking-widest text-black opacity-80">I want to</p>
-                        <h3 className="text-2xl md:text-4xl font-black italic uppercase tracking-tighter leading-none text-white">Work as a <br/>Freelancer</h3>
+                    <div className="h-28 md:h-36 lg:h-40 rounded-[2rem] lg:rounded-[2.5rem] bg-primary flex items-center justify-center p-6 text-white shadow-2xl hover:scale-[1.02] transition-all duration-700">
+                      <div className="space-y-1 text-center">
+                        <p className="text-[9px] font-black uppercase tracking-widest text-black opacity-80 leading-none mb-1">Execution Node</p>
+                        <h3 className="text-xl md:text-2xl lg:text-3xl font-black italic uppercase tracking-tighter leading-none text-white">Work as a <br/>Freelancer</h3>
                       </div>
                     </div>
                   </Link>
                   <Link href="/auth/signup?role=hirer" className="group">
-                    <div className="h-40 md:h-64 rounded-3xl bg-white border-2 border-primary flex items-center justify-center p-8 text-primary shadow-2xl hover:scale-[1.02] transition-all duration-500">
-                      <div className="space-y-2 text-center">
-                        <p className="text-xs font-black uppercase tracking-widest opacity-80">I want to</p>
-                        <h3 className="text-2xl md:text-4xl font-black italic uppercase tracking-tighter leading-none">Hire a <br/>Freelancer</h3>
+                    <div className="h-28 md:h-36 lg:h-40 rounded-[2rem] lg:rounded-[2.5rem] bg-white border-2 border-primary flex items-center justify-center p-6 text-primary shadow-2xl hover:scale-[1.02] transition-all duration-700">
+                      <div className="space-y-1 text-center">
+                        <p className="text-[9px] font-black uppercase tracking-widest opacity-80 leading-none mb-1">Orchestration Node</p>
+                        <h3 className="text-xl md:text-2xl lg:text-3xl font-black italic uppercase tracking-tighter leading-none">Hire a <br/>Freelancer</h3>
                       </div>
                     </div>
                   </Link>
                 </div>
                 
                 <Link href="/auth/signup?role=worker&intent=learn" className="w-full group">
-                  <div className="h-32 md:h-40 rounded-3xl bg-primary flex items-center justify-center p-8 text-white shadow-2xl hover:scale-[1.01] transition-all duration-500 relative overflow-hidden">
-                    <div className="absolute top-0 right-0 p-4 opacity-10"><BookOpen className="w-20 h-20" /></div>
-                    <div className="space-y-2 text-center relative z-10">
-                      <p className="text-[15px] font-black uppercase tracking-widest opacity-100 text-black">The Learning Pathway</p>
-                      <h3 className="text-xl md:text-3xl font-black italic uppercase tracking-tighter leading-none text-white">I Want to Learn First and Then Earn</h3>
+                  <div className="h-20 md:h-24 lg:h-28 rounded-[2rem] lg:rounded-[2.5rem] bg-[#0A0A0B] flex items-center justify-center p-4 text-white shadow-2xl hover:scale-[1.01] transition-all duration-700 relative overflow-hidden">
+                    <div className="absolute top-0 right-0 p-4 opacity-10"><BookOpen className="w-12 h-12 lg:w-16 lg:h-16" /></div>
+                    <div className="space-y-0 text-center relative z-10">
+                      <p className="text-[9px] font-black uppercase tracking-widest opacity-60 text-primary mb-1">The Progression Pathway</p>
+                      <h3 className="text-base md:text-xl lg:text-2xl font-black italic uppercase tracking-tighter leading-none text-white">Learn First and Then Earn</h3>
                     </div>
                   </div>
                 </Link>
 
                 <Button 
                   variant="ghost" 
-                  className="mt-4 text-[10px] font-black uppercase tracking-[0.3em] text-muted-foreground hover:text-primary"
+                  className="text-[8px] font-black uppercase tracking-[0.4em] text-muted-foreground hover:text-primary h-6 mt-1"
                   onClick={() => setShowGetStartedOptions(false)}
                 >
-                  Back to selection
+                  Return to selection
                 </Button>
               </div>
             )}
@@ -225,18 +231,18 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* 2. Trusted By Section */}
-      <section className="py-12 sm:py-20 lg:py-24 bg-white/40 border-y border-black/5">
+      {/* Trusted By Section */}
+      <section className="py-20 lg:py-28 bg-white/40 border-y border-black/5">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col items-center gap-12 lg:gap-16">
-            <h2 className="text-2xl sm:text-3xl lg:text-5xl font-black tracking-tighter text-center max-w-4xl italic leading-[1.1]">
+          <div className="flex flex-col items-center gap-16 lg:gap-20">
+            <h2 className="text-3xl lg:text-5xl font-black tracking-tighter text-center max-w-4xl italic leading-[1.1]">
               Loved and trusted by <br className="hidden sm:block"/>
               <span className="text-primary">16,000+ businesses</span>, across the globe
             </h2>
             
             <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-10 lg:gap-x-24 opacity-60">
               {TRUSTED_LOGOS.map((logo) => (
-                <div key={logo.name} className={`text-xl sm:text-2xl lg:text-3xl font-black italic uppercase tracking-tighter transition-all duration-500 cursor-default grayscale hover:grayscale-0 ${logo.color}`}>
+                <div key={logo.name} className={`text-2xl lg:text-4xl font-black italic uppercase tracking-tighter transition-all duration-500 cursor-default grayscale hover:grayscale-0 ${logo.color}`}>
                   {logo.name}
                 </div>
               ))}
@@ -245,7 +251,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* 3. Protocol Demo Section */}
+      {/* Protocol Demo Section */}
       <section id="protocol-demo" className="py-24 lg:py-48 bg-[#0A0A0B] px-4 sm:px-8 relative overflow-hidden">
         <div className="container mx-auto">
           <div className="max-w-6xl mx-auto space-y-16">
@@ -288,7 +294,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* 4. Execution Gateway */}
+      {/* Execution Gateway */}
       <section id="execution-gateway" className="min-h-screen bg-white flex flex-col lg:flex-row relative z-10 border-y border-black/5 overflow-hidden">
         <div className="flex-1 flex flex-col justify-center p-8 sm:p-12 lg:p-24 bg-white relative overflow-hidden group">
           <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
@@ -373,7 +379,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* 5. Reality Check */}
+      {/* Reality Check */}
       <section className="py-16 lg:py-48 bg-white border-y border-black/5 px-4 sm:px-8">
         <div className="container mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
@@ -408,7 +414,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* 6. Roadmap Section */}
+      {/* Roadmap Section */}
       <section id="roadmap" className="py-24 lg:py-48 bg-white relative overflow-hidden px-4 sm:px-8">
         <div className="container mx-auto">
           <div className="text-center mb-20 lg:mb-32 space-y-4">
@@ -443,7 +449,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* 7. Network Nodes Section */}
+      {/* Network Nodes Section */}
       <section id="who-is-for" className="py-24 lg:py-48 bg-[#0A0A0B] relative overflow-hidden px-4 sm:px-8">
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.05] pointer-events-none" />
         <div className="container mx-auto relative z-10">
@@ -478,7 +484,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* 8. Meet Our Founder Section */}
+      {/* Meet Our Founder Section */}
       <section className="py-24 lg:py-48 bg-white overflow-hidden px-4 sm:px-8 border-b">
         <div className="container mx-auto">
           <div className="grid lg:grid-cols-[1fr_1fr] gap-16 lg:gap-32 items-center max-w-7xl mx-auto">
@@ -536,7 +542,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* 9. FAQ Section */}
+      {/* FAQ Section */}
       <section className="py-24 lg:py-48 bg-white px-4 sm:px-8 relative overflow-hidden border-t">
         <div className="container mx-auto">
           <div className="grid lg:grid-cols-[1fr_1.5fr] gap-16 lg:gap-32 max-w-7xl mx-auto">
@@ -580,7 +586,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* 10. Premium Protocol Footer */}
+      {/* Premium Protocol Footer */}
       <footer className="py-16 lg:py-32 bg-[#0A0A0B] text-white px-4 sm:px-8 relative overflow-hidden border-t border-white/5">
         <div className="container mx-auto relative z-10 flex flex-col gap-16 lg:gap-32">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-12 gap-12 lg:gap-12">
